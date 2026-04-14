@@ -581,10 +581,62 @@ h3 { font-size: var(--fs-h3); }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
   gap: var(--space-lg);
   margin-bottom: var(--space-lg);
 }
+
+/* IDSF本部（Headquarters）セクション */
+.footer-hq h4 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  color: var(--color-text-on-dark-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+.footer-hq__logo {
+  display: block;
+  background: #000;
+  padding: 0.55rem 0.85rem;
+  border-radius: 4px;
+  border: 1px solid rgba(183, 148, 80, 0.35);
+  margin-bottom: 0.65rem;
+  max-width: 260px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.footer-hq__logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  border-color: var(--color-gold);
+}
+.footer-hq__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 44px;
+  object-fit: contain;
+}
+.footer-hq__desc {
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+  color: var(--color-text-on-dark-muted);
+  margin-bottom: 0.55rem;
+}
+.footer-hq__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--fs-xs);
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
+}
+.footer-hq__link:hover { color: #d9b870; text-decoration: underline; }
+.footer-hq__link svg { flex-shrink: 0; }
 .footer-brand .site-logo {
   font-size: 1.1rem;
   margin-bottom: var(--space-sm);
@@ -681,6 +733,7 @@ h3 { font-size: var(--fs-h3); }
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-hq { grid-column: 1 / -1; }
 }
 @media (max-width: 768px) {
   .main-nav { display: none; }

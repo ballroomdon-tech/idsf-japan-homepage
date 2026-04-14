@@ -5,13 +5,13 @@ URLはサイト公開後に idsf-japan.com に差し替えてください。
 
 ---
 
-## Instagram（@idsf_japan）
+## Instagram（@idsfproduct_japan）
 
 ### 名前（表示名）
 IDSF Japan｜国際ダンススポーツ財団 日本支部
 
 ### ユーザーネーム
-idsf_japan
+idsfproduct_japan
 
 ### 自己紹介（150文字以内）
 IDSF本部直轄 日本支部🇯🇵

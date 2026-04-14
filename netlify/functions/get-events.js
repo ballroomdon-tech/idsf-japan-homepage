@@ -27,6 +27,21 @@ function extractImageUrl(filesArray) {
 }
 
 /**
+ * Notion Files & Media型プロパティから、全ファイルを配列で取得する。
+ * ページ単位のドキュメント（PDF等）を複数扱う用途。
+ * 戻り値: [{ name, url }]
+ */
+function extractFiles(filesArray) {
+  if (!filesArray || filesArray.length === 0) return [];
+  return filesArray.map(f => {
+    const url = f.type === 'file' ? f.file?.url
+              : f.type === 'external' ? f.external?.url
+              : null;
+    return url ? { name: f.name || 'document', url } : null;
+  }).filter(Boolean);
+}
+
+/**
  * Notionの各ページを、フロントエンドが期待する形式に変換する。
  * プロパティ名は「IDSF Japan 大会管理」データベースの実際の日本語名に対応。
  */
@@ -72,15 +87,55 @@ function transformEvent(page) {
   // ---- URL ----
   const entryUrl  = p['エントリーURL']?.url || null;
 
-  // ---- 画像（サムネイル or バナー）----
-  // Notionの「サムネイル画像URL」「バナー画像URL」はURL型プロパティ
-  const flyerImage = p['バナー画像URL']?.url || p['サムネイル画像URL']?.url || null;
+  // ---- 画像（ポスター / バナー / サムネイル）----
+  // 優先順:
+  //   1. 「ポスター画像」(Files & Media型) — Notionに直接アップロードされた画像
+  //   2. 「バナー画像URL」(URL型) — 外部URL
+  //   3. 「サムネイル画像URL」(URL型) — 外部URL
+  const posterFiles  = extractFiles(p['ポスター画像']?.files || []);
+  const posterImage  = posterFiles[0]?.url || null;
+  const flyerImage   = posterImage
+                     || p['バナー画像URL']?.url
+                     || p['サムネイル画像URL']?.url
+                     || null;
+
+  // ポスターギャラリー（複数枚ある場合はモーダル内でスライダー表示用）
+  const posterImages = posterFiles.map(f => f.url);
 
   // ---- 表示順 ----
   const sortOrder = p['表示順']?.number ?? 999;
 
   // ---- 地域（国内: 都道府県+市区町村 / 国際: 国+都市）----
   const region = extractText(p['地域']?.rich_text || []);
+
+  // ---- 資料（シラバス・大会要項等）----
+  // Notion側のプロパティ対応:
+  //   「シラバス」  Files & Media型 — 複数ファイル可
+  //   「大会要項」  Files & Media型 — 複数ファイル可
+  //   「資料URL」   URL型          — 外部リンク（NotionページやGoogle Drive）
+  const documents = [];
+  const syllabusFiles = extractFiles(p['シラバス']?.files || []);
+  syllabusFiles.forEach(f => documents.push({
+    label: f.name || 'シラバス',
+    type:  'シラバス',
+    url:   f.url,
+  }));
+  const guidelineFiles = extractFiles(p['大会要項']?.files || []);
+  guidelineFiles.forEach(f => documents.push({
+    label: f.name || '大会要項',
+    type:  '大会要項',
+    url:   f.url,
+  }));
+  const docsFiles = extractFiles(p['資料']?.files || []);
+  docsFiles.forEach(f => documents.push({
+    label: f.name || '資料',
+    type:  '資料',
+    url:   f.url,
+  }));
+  const docsUrl = p['資料URL']?.url || null;
+  if (docsUrl) {
+    documents.push({ label: '大会資料ページ', type: 'リンク', url: docsUrl });
+  }
 
   return {
     id: page.id,
@@ -97,7 +152,9 @@ function transformEvent(page) {
     region,
     description,
     flyerImage,
+    posterImages,
     sortOrder,
+    documents,
     notionUrl: page.url,
   };
 }

@@ -22,7 +22,12 @@
       venue: '新宿コズミックセンター　東京都新宿区大久保3-1-2',
       region: '東京都 新宿区',
       description: 'IDSF Japan 主催のオープン大会。スタンダード・ラテン各部門で開催。初心者クラスからオープンクラスまで幅広い部門をご用意しています。',
-      flyerImage: null, isFallback: true,
+      flyerImage: null,
+      documents: [
+        // 例: { label: 'シラバス（スタンダード）', type: 'シラバス', url: '/docs/events/star-cup-shinjuku-2026-syllabus-std.pdf' },
+        // 例: { label: '大会要項', type: '大会要項', url: '/docs/events/star-cup-shinjuku-2026-guideline.pdf' },
+      ],
+      isFallback: true,
     },
     {
       id: 'fb-2', title: '全日本ダンススポーツ選手権',
@@ -32,7 +37,9 @@
       venue: '東京ドームホテル B1F「天空」　東京都文京区後楽1-3-61',
       region: '東京都 文京区',
       description: 'IDSF Japan 主催の全日本選手権大会。日本一を決める最高峰の舞台。上位入賞者にはIDSF国際大会への推薦資格が与えられます。',
-      flyerImage: null, isFallback: true,
+      flyerImage: null,
+      documents: [],
+      isFallback: true,
     },
     {
       id: 'fb-3', title: 'FEINDA — Italian Open 2026',
@@ -42,7 +49,9 @@
       venue: 'Palacongressi di Cervia　Cervia (RA), Italia',
       region: 'Italy / Cervia',
       description: 'Festival Internazionale e Nazionale della Danza Sportiva。IDSF Japan が日本選手の出場をサポートします。',
-      flyerImage: null, isFallback: true,
+      flyerImage: null,
+      documents: [],
+      isFallback: true,
     },
   ];
 
@@ -130,13 +139,23 @@
     const divTags = (ev.division || []).map(d =>
       `<span class="ev-card__div-tag">${esc(d)}</span>`).join('');
 
+    const docCount = (ev.documents || []).length;
+    const docBadge = docCount > 0
+      ? `<span class="ev-card__doc-icon" title="資料 ${docCount} 件">
+           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+           </svg>
+           資料 ${docCount}
+         </span>`
+      : '';
+
     return `
     <article class="ev-card" tabindex="0" role="button"
       aria-label="${esc(ev.title)}の詳細を見る"
       data-event-id="${esc(ev.id)}">
       ${imgArea}
       <div class="ev-card__body">
-        <p class="ev-card__date">${esc(dateStr)}</p>
+        <p class="ev-card__date">${esc(dateStr)}${docBadge}</p>
         <h3 class="ev-card__title">${esc(ev.title)}</h3>
         ${ev.venue ? `<p class="ev-card__venue">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -220,14 +239,30 @@
 
     _prevFocus = document.activeElement;
 
-    // 画像
+    // 画像（メイン + ポスターギャラリー）
     const imgHTML = ev.flyerImage
-      ? `<img class="ev-modal__img" src="${esc(ev.flyerImage)}" alt="${esc(ev.title)} フライヤー">`
+      ? `<a class="ev-modal__img-link" href="${esc(ev.flyerImage)}" target="_blank" rel="noopener noreferrer" aria-label="画像を原寸で開く">
+           <img class="ev-modal__img" src="${esc(ev.flyerImage)}" alt="${esc(ev.title)} ポスター" loading="lazy">
+           <span class="ev-modal__img-zoom" aria-hidden="true">
+             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+           </span>
+         </a>`
       : `<div class="ev-modal__img-placeholder">
            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.8" aria-hidden="true">
              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
            </svg>
          </div>`;
+
+    // ポスターが複数枚ある場合のサムネギャラリー（2枚目以降）
+    const extraPosters = (ev.posterImages || []).slice(1);
+    const galleryHTML = extraPosters.length
+      ? `<div class="ev-modal__gallery" role="region" aria-label="追加のポスター画像">
+           ${extraPosters.map((url, i) => `
+             <a class="ev-modal__gallery-item" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="ポスター ${i + 2} を開く">
+               <img src="${esc(url)}" alt="${esc(ev.title)} ポスター ${i + 2}" loading="lazy">
+             </a>`).join('')}
+         </div>`
+      : '';
 
     // 期間
     const dateStr = fmtDate(ev.dateStart, ev.dateEnd);
@@ -268,6 +303,48 @@
     const venueHTML = ev.venue
       ? `<tr><th>会場</th><td>${esc(ev.venue)}</td></tr>` : '';
 
+    // 資料セクション（シラバス・大会要項・その他PDF等）
+    const docs = (ev.documents || []).filter(d => d && d.url);
+    const docsHTML = docs.length
+      ? `<div class="ev-modal__docs" role="region" aria-label="大会資料">
+           <div class="ev-modal__docs-title">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+               <polyline points="14 2 14 8 20 8"/>
+             </svg>
+             大会資料
+           </div>
+           <ul class="ev-modal__docs-list">
+             ${docs.map(d => {
+               const isPdf = /\.pdf($|\?)/i.test(d.url);
+               const icon = isPdf
+                 ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <text x="7" y="17" font-size="6" font-weight="700" stroke="none" fill="currentColor">PDF</text>
+                    </svg>`
+                 : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>`;
+               return `
+                 <li>
+                   <a class="ev-modal__doc-link" href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">
+                     <span class="ev-modal__doc-icon">${icon}</span>
+                     <span class="ev-modal__doc-meta">
+                       <span class="ev-modal__doc-label">${esc(d.label || d.type || 'ドキュメント')}</span>
+                       ${d.type ? `<span class="ev-modal__doc-type">${esc(d.type)}${isPdf ? ' · PDF' : ''}</span>` : ''}
+                     </span>
+                     <svg class="ev-modal__doc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                       <path d="M7 17L17 7"/><path d="M7 7h10v10"/>
+                     </svg>
+                   </a>
+                 </li>`;
+             }).join('')}
+           </ul>
+         </div>`
+      : '';
+
     // ボタン
     const entryBtn = ev.entryUrl
       ? `<a href="${esc(ev.entryUrl)}" class="ev-modal__entry-btn" target="_blank" rel="noopener noreferrer">
@@ -285,6 +362,7 @@
 
     content.innerHTML = `
       ${imgHTML}
+      ${galleryHTML}
       <div class="ev-modal__body">
         <span class="ev-modal__badge ${modalBadgeClass(ev.category)}">${esc(ev.category)}</span>
         <h2 class="ev-modal__title" id="ev-modal-title">${esc(ev.title)}</h2>
@@ -299,6 +377,7 @@
           </tbody>
         </table>
         ${ev.description ? `<p class="ev-modal__desc">${esc(ev.description)}</p>` : ''}
+        ${docsHTML}
         <div class="ev-modal__actions">
           ${entryBtn}
           <a href="contact.html" class="ev-modal__contact-btn">

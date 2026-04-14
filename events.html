@@ -314,14 +314,45 @@
       border-color: var(--color-navy);
     }
 
-    /* モーダル フライヤー画像 */
+    /* モーダル ポスター / フライヤー画像 */
+    .ev-modal__img-link {
+      position: relative;
+      display: block;
+      width: 100%;
+      background: #0a0a12;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      cursor: zoom-in;
+      max-height: 70vh;
+    }
     .ev-modal__img {
       width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
+      max-height: 70vh;
+      object-fit: contain;
       display: block;
-      border-radius: 12px 12px 0 0;
+      transition: transform 0.35s ease;
     }
+    .ev-modal__img-link:hover .ev-modal__img { transform: scale(1.02); }
+    .ev-modal__img-zoom {
+      position: absolute;
+      right: 0.8rem;
+      bottom: 0.8rem;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .ev-modal__img-link:hover .ev-modal__img-zoom,
+    .ev-modal__img-link:focus-visible .ev-modal__img-zoom { opacity: 1; }
+
     .ev-modal__img-placeholder {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -332,6 +363,37 @@
       border-radius: 12px 12px 0 0;
     }
     .ev-modal__img-placeholder svg { opacity: 0.15; }
+
+    /* 追加ポスター ギャラリー（2枚目以降のサムネ） */
+    .ev-modal__gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: var(--color-bg-subtle);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .ev-modal__gallery-item {
+      display: block;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid var(--color-border-light);
+      background: #fff;
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ev-modal__gallery-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border-color: var(--color-gold);
+    }
+    .ev-modal__gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* モーダル本文 */
     .ev-modal__body {
@@ -433,6 +495,100 @@
       color: var(--color-text-light);
       line-height: 1.9;
       margin-bottom: 1.5rem;
+    }
+
+    /* 資料（シラバス・要項）セクション */
+    .ev-modal__docs {
+      margin: 1.25rem 0 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius);
+    }
+    .ev-modal__docs-title {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--color-text-strong);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .ev-modal__docs-title svg { color: var(--color-gold-dark); flex-shrink: 0; }
+    .ev-modal__docs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .ev-modal__doc-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.8rem;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius);
+      color: var(--color-navy);
+      font-size: var(--fs-small);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .ev-modal__doc-link:hover {
+      border-color: var(--color-gold);
+      background: #fffdf7;
+      transform: translateX(2px);
+    }
+    .ev-modal__doc-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg-subtle);
+      border-radius: 4px;
+      color: var(--color-gold-dark);
+    }
+    .ev-modal__doc-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .ev-modal__doc-label {
+      display: block;
+      font-weight: 600;
+      color: var(--color-text-strong);
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ev-modal__doc-type {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--color-text-light);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+    .ev-modal__doc-arrow {
+      flex-shrink: 0;
+      color: var(--color-text-light);
+    }
+
+    /* カードのドキュメントアイコン（シラバス有無の印） */
+    .ev-card__doc-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.65rem;
+      color: var(--color-gold-dark);
+      font-weight: 600;
+      margin-left: 0.4rem;
     }
 
     /* エントリーボタン */
@@ -650,7 +806,7 @@
           <a href="/" class="site-logo">IDSF <span>Japan</span></a>
           <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部。ダンススポーツの普及と国際交流を推進します。</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/idsf_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/idsfproduct_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
             <a href="https://x.com/idsf_japan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
@@ -673,6 +829,17 @@
           <h4>Info</h4>
           <a href="contact.html">お問い合わせ</a>
           <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+        <div class="footer-hq">
+          <h4>IDSF Headquarters</h4>
+          <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__logo" aria-label="IDSF本部 公式サイトを開く（新しいタブ）">
+            <img src="images/logo-idsf.png" alt="International DanceSport Foundation" loading="lazy" width="220" height="40">
+          </a>
+          <p class="footer-hq__desc">イタリアに本部を置く International DanceSport Foundation の公式サイト。</p>
+          <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__link">
+            dancesportlive.info
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-bottom">
