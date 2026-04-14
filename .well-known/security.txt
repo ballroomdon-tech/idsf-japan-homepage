@@ -1,0 +1,3 @@
+Contact: mailto:ballroomdon@gmail.com
+Preferred-Languages: ja, en
+Canonical: https://idsf-japan.com/.well-known/security.txt

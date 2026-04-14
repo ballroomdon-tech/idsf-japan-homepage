@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大会・イベント情報 | IDSF Japan — Star Cup・全日本選手権・国際大会</title>
+  <meta name="description" content="IDSF Japan 主催・サポートの2026年大会スケジュール。Star Cup 新宿（5/10）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など。国内大会と国際大会の情報を随時更新。">
+  <meta name="keywords" content="ダンススポーツ大会,Star Cup,全日本選手権,Italian Open,IDSF Japan,競技ダンス大会,2026">
+  <meta property="og:title" content="大会・イベント情報 | IDSF Japan — Star Cup・全日本選手権・国際大会">
+  <meta property="og:description" content="Star Cup 新宿（5/10）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など2026年大会スケジュール。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idsf-japan.com/events">
+  <meta property="og:image" content="https://idsf-japan.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="IDSF Japan">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="大会・イベント情報 | IDSF Japan">
+  <meta name="twitter:description" content="Star Cup 新宿・全日本選手権・Italian Open 2026など2026年大会スケジュール。">
+  <meta name="twitter:image" content="https://idsf-japan.com/images/og-image.jpg">
+  <link rel="canonical" href="https://idsf-japan.com/events">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========================================
+       Events カードグリッド + モーダル
+    ======================================== */
+
+    /* --- タブ --- */
+    .events-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--color-border-light);
+      margin-bottom: var(--space-lg);
+    }
+    .events-tab-btn {
+      padding: 0.75rem 1.75rem;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: var(--color-text-light);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      letter-spacing: 0.04em;
+    }
+    .events-tab-btn:hover { color: var(--color-navy); }
+    .events-tab-btn.active {
+      color: var(--color-navy);
+      border-bottom-color: var(--color-gold);
+    }
+    .events-tab-panel { display: none; }
+    .events-tab-panel.active { display: block; }
+
+    /* --- カードグリッド --- */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .events-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    }
+
+    /* --- 個別カード --- */
+    .ev-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .ev-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.10);
+    }
+    .ev-card:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 2px;
+    }
+
+    /* カード画像エリア */
+    .ev-card__img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--color-bg-subtle);
+      overflow: hidden;
+    }
+    .ev-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ev-card:hover .ev-card__img img { transform: scale(1.04); }
+
+    /* 画像なしのプレースホルダー */
+    .ev-card__img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-text-light);
+      background: linear-gradient(135deg, var(--color-bg-subtle) 0%, #ede8df 100%);
+    }
+    .ev-card__img-placeholder svg { opacity: 0.35; }
+    .ev-card__img-placeholder span {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.08em;
+      opacity: 0.5;
+    }
+
+    /* カテゴリバッジ（画像上） */
+    .ev-card__badge {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 2px;
+      background: var(--color-gold);
+      color: var(--color-white);
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+    .ev-card__badge--championship { background: #b5302a; }
+    .ev-card__badge--international { background: var(--color-navy); }
+
+    /* 地域バッジ（画像右下） */
+    .ev-card__region {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--color-navy);
+      border-radius: 2px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      max-width: calc(100% - 1.2rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ev-card__region svg {
+      flex-shrink: 0;
+      color: var(--color-gold-dark);
+    }
+
+    /* モーダル：地域行 */
+    .ev-modal__region {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    .ev-modal__region svg { color: var(--color-gold-dark); flex-shrink: 0; }
+
+    /* カード本文 */
+    .ev-card__body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .ev-card__date {
+      font-size: var(--fs-xs);
+      color: var(--color-gold-dark);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+      font-family: 'Raleway', sans-serif;
+    }
+    .ev-card__title {
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .ev-card__venue {
+      font-size: var(--fs-xs);
+      color: var(--color-text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.3rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    .ev-card__venue svg { flex-shrink: 0; margin-top: 1px; }
+    .ev-card__divisions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: auto;
+    }
+    .ev-card__div-tag {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      background: var(--color-bg-subtle);
+      color: var(--color-navy);
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* --- ローディング / エラー --- */
+    .events-status {
+      text-align: center;
+      padding: var(--space-xl) 0;
+      color: var(--color-text-light);
+    }
+    .events-status .spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--color-border-light);
+      border-top-color: var(--color-gold);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin-bottom: 0.75rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .events-status.error { color: #b5302a; }
+
+    /* 更新時刻 */
+    .events-meta {
+      text-align: right;
+      font-size: var(--fs-xs);
+      color: var(--color-text-light);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* ========================================
+       モーダル
+    ======================================== */
+    .ev-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 20, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .ev-modal-overlay.open { display: flex; }
+
+    .ev-modal {
+      background: var(--color-white);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    /* モーダル閉じるボタン */
+    .ev-modal__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--color-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--color-text-light);
+      transition: all var(--transition-fast);
+      z-index: 10;
+    }
+    .ev-modal__close:hover {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-color: var(--color-navy);
+    }
+
+    /* モーダル フライヤー画像 */
+    .ev-modal__img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+    .ev-modal__img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-navy) 0%, #2d2d45 100%);
+      border-radius: 12px 12px 0 0;
+    }
+    .ev-modal__img-placeholder svg { opacity: 0.15; }
+
+    /* モーダル本文 */
+    .ev-modal__body {
+      padding: 1.75rem 2rem 2rem;
+    }
+    @media (max-width: 480px) {
+      .ev-modal__body { padding: 1.25rem 1.25rem 1.5rem; }
+    }
+
+    .ev-modal__badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      background: var(--color-gold);
+      color: var(--color-white);
+      border-radius: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .ev-modal__badge--championship { background: #b5302a; }
+    .ev-modal__badge--international { background: var(--color-navy); }
+
+    .ev-modal__title {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+    }
+
+    /* 詳細テーブル */
+    .ev-modal__info {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.25rem;
+    }
+    .ev-modal__info tr {
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .ev-modal__info tr:last-child { border-bottom: none; }
+    .ev-modal__info th {
+      width: 90px;
+      padding: 0.6rem 0.5rem 0.6rem 0;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      letter-spacing: 0.04em;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    .ev-modal__info td {
+      padding: 0.6rem 0;
+      font-size: var(--fs-small);
+      color: var(--color-text);
+      vertical-align: top;
+      line-height: 1.7;
+    }
+
+    /* 締切バッジ */
+    .ev-modal__deadline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-strong);
+    }
+    .ev-modal__deadline-badge.urgent {
+      background: #fff8e1;
+      border-color: #f0c040;
+      color: #7a5c00;
+    }
+
+    /* 区分タグ */
+    .ev-modal__divisions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .ev-modal__div-tag {
+      font-size: var(--fs-xs);
+      padding: 0.2rem 0.6rem;
+      background: var(--color-bg-subtle);
+      color: var(--color-navy);
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* 説明文 */
+    .ev-modal__desc {
+      font-size: var(--fs-small);
+      color: var(--color-text-light);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    /* エントリーボタン */
+    .ev-modal__actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .ev-modal__entry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--color-gold);
+      color: var(--color-white);
+      border: 2px solid var(--color-gold);
+      border-radius: var(--border-radius);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-base);
+    }
+    .ev-modal__entry-btn:hover {
+      background: var(--color-gold-dark);
+      border-color: var(--color-gold-dark);
+      color: var(--color-white);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(183,148,80,0.35);
+    }
+    .ev-modal__contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--color-navy);
+      border: 2px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-size: var(--fs-small);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-base);
+    }
+    .ev-modal__contact-btn:hover {
+      border-color: var(--color-navy);
+      color: var(--color-navy);
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://idsf-japan.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Events", "item": "https://idsf-japan.com/events" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "Star Cup 新宿",
+      "startDate": "2026-05-10",
+      "endDate": "2026-05-10",
+      "location": {
+        "@type": "Place",
+        "name": "新宿コズミックセンター",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "新宿区",
+          "addressRegion": "東京都",
+          "addressCountry": "JP"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "IDSF Japan",
+        "url": "https://idsf-japan.com"
+      },
+      "description": "IDSF公認の国内コンペティション。スタンダード・ラテン各種目を実施。",
+      "url": "https://idsf-japan.com/events",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "sport": "Dancesport"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "全日本ダンススポーツ選手権",
+      "startDate": "2026-06-07",
+      "endDate": "2026-06-07",
+      "location": {
+        "@type": "Place",
+        "name": "東京ドームホテル B1F「天空」",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "文京区",
+          "addressRegion": "東京都",
+          "addressCountry": "JP"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "IDSF Japan",
+        "url": "https://idsf-japan.com"
+      },
+      "description": "IDSF Japan 主催の全日本選手権大会。日本一を決める最高峰の舞台。",
+      "url": "https://idsf-japan.com/events",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "sport": "Dancesport"
+    }
+  ]
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+      <nav class="main-nav" role="navigation" aria-label="メインナビゲーション">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="rules.html">Rules</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" role="navigation" aria-label="モバイルナビゲーション">
+    <a href="/">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="rules.html">Rules</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container" data-reveal>
+      <h1>Events</h1>
+      <p>2026年 大会・イベント情報</p>
+    </div>
+  </section>
+
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li>Events</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Events Main -->
+  <section class="section">
+    <div class="container">
+
+      <!-- タブ -->
+      <div class="events-tabs" role="tablist" aria-label="大会種別">
+        <button class="events-tab-btn active" role="tab" aria-selected="true"  data-tab="domestic">国内大会</button>
+        <button class="events-tab-btn"        role="tab" aria-selected="false" data-tab="international">国際大会</button>
+      </div>
+
+      <!-- 更新時刻 -->
+      <p class="events-meta" id="events-meta" aria-live="polite"></p>
+
+      <!-- 国内大会 -->
+      <div class="events-tab-panel active" id="tab-domestic" role="tabpanel">
+        <div id="events-domestic">
+          <div class="events-status" id="loading-domestic">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>読み込んでいます…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 国際大会 -->
+      <div class="events-tab-panel" id="tab-international" role="tabpanel">
+        <div id="events-international">
+          <div class="events-status" id="loading-international">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>読み込んでいます…</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container text-center" data-reveal>
+      <h2>大会参加について</h2>
+      <p style="max-width:600px;margin:var(--space-sm) auto var(--space-md);color:var(--color-text-on-dark-muted);">
+        各大会への参加には IDSF Japan への会員登録が必要です（入会無料）。国内大会のエントリーや海外大会への出場サポートについては、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn btn--outline-white">エントリーについて問い合わせる</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部。ダンススポーツの普及と国際交流を推進します。</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/idsf_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://x.com/idsf_japan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://lin.ee/IDSFJAPAN" target="_blank" rel="noopener noreferrer" aria-label="LINE公式アカウント">
+              <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Pages</h4>
+          <a href="/">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="rules.html">Rules</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-nav">
+          <h4>Info</h4>
+          <a href="contact.html">お問い合わせ</a>
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IDSF Japan. All rights reserved.</p>
+        <p>IDSF本部直轄 日本支部</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- モーダル -->
+  <div class="ev-modal-overlay" id="ev-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">
+    <div class="ev-modal" id="ev-modal">
+      <button class="ev-modal__close" id="ev-modal-close" aria-label="閉じる">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="ev-modal-content"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/events-notion.js"></script>
+</body>
+</html>
