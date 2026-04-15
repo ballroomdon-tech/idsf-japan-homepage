@@ -9,6 +9,7 @@
 (function () {
   'use strict';
 
+  console.log('[home-events] script loaded, readyState=', document.readyState);
   const API_URL = '/.netlify/functions/get-events';
   const MAX_ITEMS = 3;
 
@@ -121,9 +122,21 @@
     }
   }
 
+  // 実行タイミングを確実にする：DOMContentLoaded を待たず即実行
+  // （script はページ末尾にあるため DOM は既に揃っている想定）
+  function start() {
+    try {
+      load();
+    } catch (e) {
+      console.error('[home-events] start failed:', e);
+      render(FALLBACK);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', load);
+    document.addEventListener('DOMContentLoaded', start);
   } else {
-    load();
+    // 既にDOM構築済み → 即実行
+    start();
   }
 })();
