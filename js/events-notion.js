@@ -24,8 +24,8 @@
       description: 'IDSF Japan 主催のオープン大会。スタンダード・ラテン各部門で開催。初心者クラスからオープンクラスまで幅広い部門をご用意しています。',
       flyerImage: null,
       documents: [
-        // 例: { label: 'シラバス（スタンダード）', type: 'シラバス', url: '/docs/events/star-cup-shinjuku-2026-syllabus-std.pdf' },
-        // 例: { label: '大会要項', type: '大会要項', url: '/docs/events/star-cup-shinjuku-2026-guideline.pdf' },
+        { label: 'シラバス（競技クラス別フィガー一覧）', type: 'シラバス', url: '/rules.html#syllabus' },
+        { label: '大会ルール（年齢・クラス・審査方式 等）', type: '大会規程', url: '/rules.html' },
       ],
       isFallback: true,
     },
@@ -38,7 +38,10 @@
       region: '東京都 文京区',
       description: 'IDSF Japan 主催の全日本選手権大会。日本一を決める最高峰の舞台。上位入賞者にはIDSF国際大会への推薦資格が与えられます。',
       flyerImage: null,
-      documents: [],
+      documents: [
+        { label: 'シラバス（競技クラス別フィガー一覧）', type: 'シラバス', url: '/rules.html#syllabus' },
+        { label: '大会ルール（年齢・クラス・審査方式 等）', type: '大会規程', url: '/rules.html' },
+      ],
       isFallback: true,
     },
     {
@@ -50,7 +53,9 @@
       region: 'Italy / Cervia',
       description: 'Festival Internazionale e Nazionale della Danza Sportiva。IDSF Japan が日本選手の出場をサポートします。',
       flyerImage: null,
-      documents: [],
+      documents: [
+        { label: 'IDSF シラバス（国際大会共通）', type: 'シラバス', url: '/rules.html#syllabus' },
+      ],
       isFallback: true,
     },
   ];

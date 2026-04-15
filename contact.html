@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お問い合わせ | IDSF Japan — 入会・大会エントリーのご相談</title>
-  <meta name="description" content="IDSF Japan へのお問い合わせフォーム。入会（無料）のご相談、Star Cup・全日本選手権などの大会エントリー、海外IDSF公認大会への出場サポートについてお気軽にご連絡ください。">
-  <meta name="keywords" content="IDSF Japan,お問い合わせ,入会,大会エントリー,ダンススポーツ">
+  <title>お問い合わせ・入会・大会エントリー相談 | IDSF Japan（入会無料）</title>
+  <meta name="description" content="IDSF Japan へのお問い合わせ。入会（無料）のご相談、Star Cup・全日本選手権のエントリー、海外IDSF公認大会の出場サポート、障がい者ダンス・世代間交流プログラムのご相談まで。個人・団体・自治体の方も歓迎。">
+  <meta name="keywords" content="IDSF Japan 問い合わせ,社交ダンス 入会,ダンススポーツ 入会,大会エントリー,海外大会 サポート,車いすダンス 相談">
   <meta property="og:title" content="お問い合わせ | IDSF Japan — 入会・大会エントリーのご相談">
   <meta property="og:description" content="入会（無料）のご相談、大会エントリー、海外大会サポートについてお気軽にお問い合わせください。">
   <meta property="og:type" content="website">
@@ -32,6 +32,70 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://idsf-japan.com/" },
       { "@type": "ListItem", "position": 2, "name": "Contact" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "IDSF Japan への入会費・年会費はかかりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "現在、入会費・年会費ともに無料です。どなたでもお気軽にご相談いただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "他団体に所属していても IDSF Japan の大会に出場できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "出場できます。IDSF Japan は所属団体を制限しません。他団体との掛け持ちも自由で、他団体の大会に出場することもできます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "海外の IDSF 公認大会には、必ず IDSF Japan を経由しないと出場できませんか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。IDSF 公認の国際大会は、各大会の公式エントリーフォームから選手ご自身で直接エントリーすることもできます。IDSF Japan は、手続きや現地情報に不安がある方のためのサポート窓口としてご利用いただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "初心者や始めたばかりのカップルでも大会に出場できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "出場できます。IDSF Japan はクラスD（入門）から上位クラスまで段階的な競技クラスを用意しており、シラバス制により初心者でも同じ条件で公平に競い合える環境を整えています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "障がいがあってもダンスに参加できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。IDSF Japan は車いすダンスをはじめ、障がいのある方もパートナーと音楽を共有できるダンスの形を大切にしています。必要な配慮は一人ひとりの声を聞きながら一緒に考えていきますので、お気軽にご相談ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "子ども（未就学児）や高齢者も参加できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。3歳のお子様から後期高齢者の方まで、ライフステージに応じたプログラムを企画・支援しています。競技志向の方も、健康維持や趣味として楽しみたい方も歓迎します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "エントリー締切はいつですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "大会初日の15日前までに、エントリーと支払いを完了してください。期日を過ぎた場合は追加料金が発生する場合があります。詳細は各大会の情報をご確認ください。"
+        }
+      }
     ]
   }
   </script>
@@ -92,7 +156,19 @@
             </p>
           </div>
 
-          <form id="contact-form" data-reveal data-reveal-delay="1" action="https://formspree.io/f/FORM_ID" method="POST">
+          <form id="contact-form" data-reveal data-reveal-delay="1"
+                name="contact"
+                method="POST"
+                action="/thanks.html"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field">
+            <!-- Netlify Forms: required hidden field to identify form name -->
+            <input type="hidden" name="form-name" value="contact">
+            <!-- Honeypot: hidden from humans, bots will fill it and be rejected by Netlify -->
+            <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <label for="bot-field">このフィールドは入力しないでください</label>
+              <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="name">お名前 <span style="color: var(--color-error);">*</span></label>
               <input type="text" id="name" name="name" required autocomplete="name" placeholder="山田 太郎">
@@ -162,13 +238,53 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section section--subtle" id="faq">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <h2>よくあるご質問</h2>
+        <p>FAQ — お問い合わせ前にご確認ください</p>
+      </div>
+      <div style="max-width: 820px; margin: 0 auto;">
+        <details class="faq-item" data-reveal>
+          <summary>IDSF Japan への入会費・年会費はかかりますか？</summary>
+          <p>現在、入会費・年会費ともに無料です。どなたでもお気軽にご相談いただけます。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>他団体に所属していても IDSF Japan の大会に出場できますか？</summary>
+          <p>出場できます。IDSF Japan は所属団体を制限しません。他団体との掛け持ちも自由で、他団体の大会に出場することもできます。選手はどの団体に属しているかではなく、どのフロアで踊りたいかで選ぶべきだと私たちは考えています。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>海外の IDSF 公認大会には、必ず IDSF Japan を経由しないと出場できませんか？</summary>
+          <p>いいえ。IDSF 公認の国際大会は、各大会の公式エントリーフォームから選手ご自身で直接エントリーすることもできます。IDSF Japan は、手続きや現地情報に不安がある方のためのサポート窓口としてご活用ください。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>初心者や始めたばかりのカップルでも大会に出場できますか？</summary>
+          <p>出場できます。IDSF Japan はクラスD（入門）から上位クラスまで段階的な競技クラスを用意しており、シラバス制により初心者でも同じ条件で公平に競い合える環境を整えています。詳しくは <a href="rules.html#classes" style="color:var(--color-gold-dark);">競技クラスのページ</a>をご覧ください。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>障がいがあってもダンスに参加できますか？</summary>
+          <p>はい。IDSF Japan は車いすダンスをはじめ、障がいのある方もパートナーと音楽を共有できるダンスの形を大切にしています。必要な配慮は一人ひとりの声を聞きながら一緒に考えていきますので、お気軽にご相談ください。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>子ども（未就学児）や高齢者も参加できますか？</summary>
+          <p>はい。3歳のお子様から後期高齢者の方まで、ライフステージに応じたプログラムを企画・支援しています。競技志向の方も、健康維持や趣味として楽しみたい方も歓迎します。</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>エントリー締切はいつですか？</summary>
+          <p>大会初日の15日前までに、エントリーと支払いを完了してください。期日を過ぎた場合は追加料金が発生する場合があります。詳細は各大会の情報をご確認いただくか、お問い合わせください。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="site-logo">IDSF <span>Japan</span></a>
-          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部。ダンススポーツの普及と国際交流を推進します。</p>
+          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部（International Dancesport Japan）。社交ダンス・ダンススポーツの普及と国際交流を推進します。</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/idsfproduct_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>

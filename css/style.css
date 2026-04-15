@@ -515,6 +515,101 @@ h3 { font-size: var(--fs-h3); }
 .section--dark .feature-item h3 { color: var(--color-white); }
 .section--dark .feature-item p { color: var(--color-text-on-dark-muted); }
 
+/* --- Numbered 3-column variant (3つであることを活かした表示) --- */
+.feature-list--numbered {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  counter-reset: feature-counter;
+}
+@media (max-width: 900px) {
+  .feature-list--numbered { grid-template-columns: 1fr; }
+}
+.feature-list--numbered .feature-item {
+  counter-increment: feature-counter;
+  padding-top: calc(var(--space-md) + 1.25rem);
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--color-gold);
+}
+.feature-list--numbered .feature-item::before { content: none; }
+.feature-list--numbered .feature-item::after {
+  content: "0" counter(feature-counter);
+  position: absolute;
+  top: 0.4rem;
+  right: 1rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 3.25rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-gold);
+  opacity: 0.85;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+}
+.feature-list--numbered .feature-item h3 {
+  padding-right: 3.5rem;
+  letter-spacing: 0.01em;
+}
+.feature-list--numbered .feature-item p {
+  line-height: 1.9;
+}
+.section--dark .feature-list--numbered .feature-item::after {
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+/* --- Commitment grid (Our Commitment section) --- */
+.commitment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+@media (max-width: 720px) {
+  .commitment-grid { grid-template-columns: 1fr; }
+}
+.commitment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: var(--space-md);
+  background: var(--color-bg-subtle);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-light);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+.commitment-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gold);
+}
+.commitment-item__icon {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-gold-dark);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 2px 8px rgba(183,148,80,0.18);
+  margin-bottom: 0.2rem;
+}
+.commitment-item h3 {
+  font-size: calc(var(--fs-body) + 0.05rem);
+  font-weight: 600;
+  color: var(--color-navy);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.commitment-item p {
+  font-size: var(--fs-small);
+  color: var(--color-text-light);
+  line-height: 1.9;
+  margin: 0;
+}
+
 /* --- Contact form --- */
 .contact-grid {
   display: grid;
@@ -748,4 +843,97 @@ h3 { font-size: var(--fs-h3); }
 @media (max-width: 375px) {
   .hero h1 { font-size: 1.5rem; }
   .container { padding: 0 var(--space-sm); }
+}
+
+/* FAQ (details/summary) ------------------------------------------- */
+.faq-list { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+.faq-item {
+  border: 1px solid rgba(28, 28, 40, 0.12);
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+.faq-item[open] { border-color: var(--color-gold); }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  position: relative;
+  padding-right: 2.5rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  font-weight: 300;
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after { content: "−"; }
+.faq-item > *:not(summary) {
+  padding: 0 1.25rem 1rem;
+  color: var(--color-navy);
+  line-height: 2;
+}
+
+/* ===== FAQ (details/summary) ===== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 820px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: var(--color-white, #fff);
+  border: 1px solid rgba(28, 28, 40, 0.08);
+  border-radius: 4px;
+  padding: 0;
+  transition: border-color 0.2s ease;
+}
+.faq-item[open] {
+  border-color: var(--color-gold);
+}
+.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.1rem 1.3rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  position: relative;
+  padding-right: 2.8rem;
+  line-height: 1.6;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--color-gold);
+  transition: transform 0.2s ease;
+}
+.faq-item[open] > summary::after {
+  content: "−";
+}
+.faq-item > summary:hover {
+  color: var(--color-gold);
+}
+.faq-item .faq-answer,
+.faq-item > p {
+  padding: 0 1.3rem 1.2rem;
+  margin: 0;
+  color: var(--color-navy);
+  line-height: 2.0;
+  opacity: 0.9;
 }

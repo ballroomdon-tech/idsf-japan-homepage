@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>競技会ルール・規定 | IDSF Japan — 年齢カテゴリー・クラス・ドレスコード</title>
-  <meta name="description" content="IDSF Japan 競技会の詳細ルール。大会種類・シーズン・年齢カテゴリー（ジュニア〜シニア）・競技クラス（E〜S）・シラバス種目・ドレスコード・審査方法・エントリー方法を網羅。">
-  <meta name="keywords" content="ダンススポーツ ルール,競技クラス,年齢カテゴリー,ドレスコード,シラバス,IDSF Japan">
+  <title>社交ダンス・ダンススポーツ競技ルール | 年齢カテゴリー・クラス・シラバス・ドレスコード | IDSF Japan</title>
+  <meta name="description" content="IDSF Japan 公式の競技ルール完全ガイド。大会種類・年齢カテゴリー（ジュニアからシニア5まで）・競技クラス（DからMaster）・シラバス種目（踊れるフィガーの一覧）・ドレスコード・ISS審査方式・エントリー方法を網羅。">
+  <meta name="keywords" content="社交ダンス ルール,ダンススポーツ 競技クラス,年齢カテゴリー,シラバス フィガー,ドレスコード,審査方式,IDSF Japan,Star Cup ルール">
   <meta property="og:title" content="競技会ルール・規定 | IDSF Japan — 年齢カテゴリー・クラス・ドレスコード">
   <meta property="og:description" content="IDSF Japan 競技会の詳細ルール。年齢カテゴリー・競技クラス・シラバス種目・ドレスコード・エントリー方法を網羅。">
   <meta property="og:type" content="website">
@@ -420,10 +420,49 @@
       .judging-stats { grid-template-columns: repeat(3, 1fr); }
       .entry-steps { grid-template-columns: 1fr; }
       .rule-section-header .en { display: none; }
+
+      /* Tables: keep cells from wrapping awkwardly */
+      .rules-table { font-size: 0.82rem; }
+      .rules-table thead th { padding: 0.6rem 0.6rem; white-space: nowrap; }
+      .rules-table tbody td { padding: 0.6rem 0.6rem; }
+      .rules-table tbody td:first-child { white-space: nowrap; }
+      .rules-table .badge { font-size: 0.6rem; padding: 0.12rem 0.4rem; }
+
+      /* ISS stat boxes */
+      .stat-box { padding: var(--space-sm); }
+      .stat-box .stat-num {
+        font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.2;
+      }
+      .stat-box .stat-num span { font-size: 0.75rem; margin-top: 0.15rem; }
     }
     @media (max-width: 480px) {
       .toc-grid { grid-template-columns: 1fr; }
       .judging-stats { grid-template-columns: 1fr; }
+
+      /* Tables: shrink further, allow horizontal scroll gracefully */
+      .rules-table { font-size: 0.78rem; }
+      .rules-table thead th { padding: 0.5rem 0.5rem; font-size: 0.6rem; }
+      .rules-table tbody td { padding: 0.5rem 0.5rem; line-height: 1.5; }
+      .rules-table tbody td:first-child { white-space: nowrap; }
+      .rules-table .badge { font-size: 0.58rem; padding: 0.1rem 0.35rem; }
+
+      /* ISS stat boxes: single column, horizontal layout */
+      .stat-box { display: flex; align-items: center; text-align: left; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); }
+      .stat-box .stat-num {
+        font-size: 1.4rem;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 0.25rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .stat-box .stat-num span { font-size: 0.7rem; margin-top: 0; }
+      .stat-box .stat-desc { flex: 1; }
     }
   </style>
   <script type="application/ld+json">
@@ -494,13 +533,12 @@
         </div>
         <div class="toc-grid" data-reveal>
           <a href="#competition-types" class="toc-item"><span class="toc-num">01</span>大会の種類</a>
-          <a href="#season"            class="toc-item"><span class="toc-num">02</span>シーズン構成</a>
-          <a href="#age-categories"    class="toc-item"><span class="toc-num">03</span>年齢カテゴリー</a>
-          <a href="#classes"           class="toc-item"><span class="toc-num">04</span>競技クラス</a>
-          <a href="#syllabus"          class="toc-item"><span class="toc-num">05</span>シラバス種目</a>
-          <a href="#dress-code"        class="toc-item"><span class="toc-num">06</span>ドレスコード</a>
-          <a href="#judging"           class="toc-item"><span class="toc-num">07</span>審査方式</a>
-          <a href="#entry"             class="toc-item"><span class="toc-num">08</span>エントリー方法</a>
+          <a href="#age-categories"    class="toc-item"><span class="toc-num">02</span>年齢カテゴリー</a>
+          <a href="#classes"           class="toc-item"><span class="toc-num">03</span>競技クラス</a>
+          <a href="#syllabus"          class="toc-item"><span class="toc-num">04</span>シラバス種目</a>
+          <a href="#dress-code"        class="toc-item"><span class="toc-num">05</span>ドレスコード</a>
+          <a href="#judging"           class="toc-item"><span class="toc-num">06</span>審査方式</a>
+          <a href="#entry"             class="toc-item"><span class="toc-num">07</span>エントリー方法</a>
         </div>
       </div>
     </section>
@@ -530,9 +568,9 @@
             <p>入門クラスからMasterクラスまで、全レベルのカップルが参加できる大会です。シニア専用のSenior Cupも開催されます。</p>
           </div>
           <div class="comp-type-card" data-reveal data-reveal-delay="2">
-            <span class="tag">シーズン末・3月</span>
+            <span class="tag">全日本選手権</span>
             <h3>Championships</h3>
-            <p>シーズン終了（3月末）に開催される選手権大会。Syllabus ChampionshipsとStar Championshipsがあり、年間ランキングの最終決定と上位クラスへの昇格審査が行われます。</p>
+            <p>IDSF Japanが主催する全日本選手権大会。Syllabus ChampionshipsとJapanese Championshipsがあり、年間ランキングの決定と上位クラスへの昇格審査が行われる、年間で最も重要な大会です。</p>
           </div>
           <div class="comp-type-card" data-reveal data-reveal-delay="3">
             <span class="tag">国際大会</span>
@@ -543,55 +581,11 @@
       </div>
     </section>
 
-    <!-- 02 SEASON -->
-    <section id="season" class="rule-section section--subtle">
+    <!-- 02 AGE CATEGORIES -->
+    <section id="age-categories" class="rule-section section--subtle">
       <div class="container">
         <div class="rule-section-header" data-reveal>
           <span class="rule-section-num">02</span>
-          <h2>シーズン構成</h2>
-          <span class="en">Season Structure</span>
-        </div>
-
-        <div class="season-banner" data-reveal>
-          <p><strong>4月1日</strong>に開幕し、翌年の<strong>3月31日</strong>をもってシーズンが終了します。シーズン中は各地でSyllabus CupとStar Cupが開催され、3月のChampionshipsで年間王者が決定します。</p>
-        </div>
-
-        <div class="table-wrap" data-reveal>
-          <table class="rules-table">
-            <thead>
-              <tr>
-                <th>期間</th>
-                <th>イベント</th>
-                <th>内容</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>4月〜2月</td>
-                <td>Syllabus Cup / Star Cup</td>
-                <td>年間通じてポイントを獲得。各地で複数回開催</td>
-              </tr>
-              <tr>
-                <td>3月末</td>
-                <td>Syllabus / Star Championships</td>
-                <td>シーズン最終大会。年間ランキング確定・昇格審査</td>
-              </tr>
-              <tr>
-                <td>毎年1月1日</td>
-                <td>カテゴリー更新</td>
-                <td>年齢カテゴリーが更新される（最年長パートナーの年齢を基準）</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 AGE CATEGORIES -->
-    <section id="age-categories" class="rule-section">
-      <div class="container">
-        <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">03</span>
           <h2>年齢カテゴリー</h2>
           <span class="en">Age Categories</span>
         </div>
@@ -627,17 +621,14 @@
             </tbody>
           </table>
         </div>
-        <div class="note-box" data-reveal>
-          <p>カテゴリーはポータルサイトに登録された情報に基づき自動的に決定されます。ご不明な点は<a href="contact.html" style="color:var(--color-gold-dark);">事務局</a>までお問い合わせください。</p>
-        </div>
       </div>
     </section>
 
-    <!-- 04 COMPETITION CLASSES -->
-    <section id="classes" class="rule-section section--subtle">
+    <!-- 03 COMPETITION CLASSES -->
+    <section id="classes" class="rule-section">
       <div class="container">
         <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">04</span>
+          <span class="rule-section-num">03</span>
           <h2>競技クラス</h2>
           <span class="en">Competition Classes</span>
         </div>
@@ -747,18 +738,17 @@
           <ul>
             <li>指導者（先生）の申請によりいつでも上位クラスへの昇格が可能</li>
             <li>Championshipsでの上位入賞（参加人数により異なる）により昇格が義務づけられる場合あり</li>
-            <li>規定のランキングポイントに達した場合も自動的に昇格となる</li>
             <li>降格は原則認められない</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- 05 SYLLABUS -->
-    <section id="syllabus" class="rule-section">
+    <!-- 04 SYLLABUS -->
+    <section id="syllabus" class="rule-section section--subtle">
       <div class="container">
         <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">05</span>
+          <span class="rule-section-num">04</span>
           <h2>シラバス種目</h2>
           <span class="en">Permitted Figures</span>
         </div>
@@ -807,11 +797,11 @@
       </div>
     </section>
 
-    <!-- 06 DRESS CODE -->
-    <section id="dress-code" class="rule-section section--subtle">
+    <!-- 05 DRESS CODE -->
+    <section id="dress-code" class="rule-section">
       <div class="container">
         <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">06</span>
+          <span class="rule-section-num">05</span>
           <h2>ドレスコード</h2>
           <span class="en">Dress Code</span>
         </div>
@@ -821,10 +811,10 @@
         </p>
 
         <div class="tab-bar" data-reveal>
-          <button class="tab-btn active" onclick="switchTab(event,'women-std')">女性（スタンダード）</button>
-          <button class="tab-btn" onclick="switchTab(event,'women-lat')">女性（ラテン）</button>
-          <button class="tab-btn" onclick="switchTab(event,'men-std')">男性（スタンダード）</button>
-          <button class="tab-btn" onclick="switchTab(event,'men-lat')">男性（ラテン）</button>
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab-target="women-std">女性（スタンダード）</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="women-lat">女性（ラテン）</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="men-std">男性（スタンダード）</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="men-lat">男性（ラテン）</button>
         </div>
 
         <!-- Women Standard -->
@@ -976,11 +966,11 @@
       </div>
     </section>
 
-    <!-- 07 JUDGING -->
-    <section id="judging" class="rule-section">
+    <!-- 06 JUDGING -->
+    <section id="judging" class="rule-section section--subtle">
       <div class="container">
         <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">07</span>
+          <span class="rule-section-num">06</span>
           <h2>審査方式</h2>
           <span class="en">Judging System</span>
         </div>
@@ -1007,7 +997,7 @@
         <div class="info-box" data-reveal>
           <h4>公正性の確保</h4>
           <ul>
-            <li>審査員は自身の生徒・2親等以内の親族を審査することはできない</li>
+            <li>審査員は2親等以内の親族を審査することはできない</li>
             <li>ラウンド間で審査員のローテーションを行う場合がある</li>
             <li>大会ディレクターは規則に定めのない事態に対して裁量権を持つ</li>
           </ul>
@@ -1015,32 +1005,27 @@
       </div>
     </section>
 
-    <!-- 08 ENTRY -->
-    <section id="entry" class="rule-section section--subtle">
+    <!-- 07 ENTRY -->
+    <section id="entry" class="rule-section">
       <div class="container">
         <div class="rule-section-header" data-reveal>
-          <span class="rule-section-num">08</span>
+          <span class="rule-section-num">07</span>
           <h2>エントリー方法</h2>
           <span class="en">Entry Requirements</span>
         </div>
 
         <p style="color:var(--color-text-light);font-size:var(--fs-small);margin-bottom:var(--space-md);" data-reveal>
-          参加には公式ポータルへの登録と期日内のエントリー・支払いが必要です。
+          各大会の指定期日までにエントリーと支払いを完了してください。
         </p>
 
         <div class="entry-steps" data-reveal>
           <div class="entry-step">
             <div class="step-num">Step 01</div>
-            <h4>ポータル登録</h4>
-            <p>公式ポータルサイトへの会員登録を行います。カテゴリー・クラスはポータルの登録情報に基づき決定されます。</p>
-          </div>
-          <div class="entry-step">
-            <div class="step-num">Step 02</div>
             <h4>エントリー申請</h4>
             <p>大会初日の<strong>15日前まで</strong>にエントリーと支払いを完了してください。期日を過ぎた場合は追加料金が発生します。</p>
           </div>
           <div class="entry-step">
-            <div class="step-num">Step 03</div>
+            <div class="step-num">Step 02</div>
             <h4>参加確認</h4>
             <p>エントリー受理後に参加確認のご連絡をします。当日は受付にて参加証を提示してください。</p>
           </div>
@@ -1050,7 +1035,6 @@
           <h4>参加資格</h4>
           <ul>
             <li>カップルは男性1名・女性1名で構成されること</li>
-            <li>参加者全員が公式ポータルに登録済みであること</li>
             <li>現在のカテゴリー・クラスで登録されていること</li>
           </ul>
         </div>
@@ -1083,7 +1067,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="site-logo">IDSF <span>Japan</span></a>
-          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部。ダンススポーツの普及と国際交流を推進します。</p>
+          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部（International Dancesport Japan）。社交ダンス・ダンススポーツの普及と国際交流を推進します。</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/idsfproduct_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -1129,15 +1113,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    function switchTab(event, panelId) {
-      // Update tabs
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      // Update panels
-      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-      document.getElementById('tab-' + panelId).classList.add('active');
-    }
-  </script>
+  <script src="js/rules-tabs.js"></script>
 </body>
 </html>

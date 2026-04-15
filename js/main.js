@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Contact form validation ---
+  // --- Contact form validation (Netlify Forms) ---
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', (e) => {
-      e.preventDefault();
+      // Client-side validation only. If valid, let the browser submit to Netlify.
       let isValid = true;
 
       form.querySelectorAll('.form-group').forEach(group => {
@@ -92,11 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
         isValid = false;
       }
 
-      if (isValid) {
-        form.style.display = 'none';
-        const success = document.querySelector('.form-success');
-        if (success) success.classList.add('show');
+      if (!isValid) {
+        e.preventDefault();
+        // Scroll to first error for better UX
+        const firstError = form.querySelector('.form-group.has-error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+      // If valid, the form submits to action="/thanks.html" via Netlify Forms
     });
   }
 
