@@ -122,9 +122,9 @@
     }
   }
 
-  // 実行タイミングを確実にする：DOMContentLoaded を待たず即実行
-  // （script はページ末尾にあるため DOM は既に揃っている想定）
+  // 実行タイミングを確実にする：複数の方法で発火保証
   function start() {
+    console.log('[home-events] start() invoked');
     try {
       load();
     } catch (e) {
@@ -133,10 +133,19 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    // 既にDOM構築済み → 即実行
+  let started = false;
+  function startOnce() {
+    if (started) return;
+    started = true;
     start();
   }
+
+  // 方法1: DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startOnce);
+  }
+  // 方法2: load イベント（DOMContentLoadedが発火しなかった場合の保険）
+  window.addEventListener('load', startOnce);
+  // 方法3: 最終保険として非同期で遅延実行
+  setTimeout(startOnce, 0);
 })();
