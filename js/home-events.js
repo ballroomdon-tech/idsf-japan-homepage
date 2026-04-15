@@ -95,14 +95,18 @@
   }
 
   function render(events) {
+    console.log('[home-events] render() called, events.length=', events?.length);
     const container = document.getElementById('home-events-grid');
-    if (!container) return;
+    console.log('[home-events] container=', container);
+    if (!container) { console.warn('[home-events] #home-events-grid not found'); return; }
     const items = pickUpcoming(events);
+    console.log('[home-events] items after filter=', items.length, items);
     if (items.length === 0) {
       container.innerHTML = `<p style="text-align:center;color:var(--color-text-on-dark-muted);grid-column: 1 / -1;">現在、公開中の大会情報はありません。</p>`;
       return;
     }
     container.innerHTML = items.map(cardHTML).join('');
+    console.log('[home-events] innerHTML set, length=', container.innerHTML.length);
     // reveal
     if (window.revealObserver) {
       container.querySelectorAll('[data-reveal]').forEach(el => window.revealObserver.observe(el));
@@ -110,10 +114,13 @@
   }
 
   async function load() {
+    console.log('[home-events] load() starting fetch to', API_URL);
     try {
       const res = await fetch(API_URL, { cache: 'no-store' });
+      console.log('[home-events] fetch done, status=', res.status);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const events = await res.json();
+      console.log('[home-events] json parsed, isArray=', Array.isArray(events), 'length=', events?.length);
       if (!Array.isArray(events)) throw new Error('unexpected format');
       render(events);
     } catch (err) {
