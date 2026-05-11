@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>2nd IDSF Japanese Championships – Poster</title>
+<style>
+  @page { size: A3 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; }
+
+  :root {
+    --navy:        #0E1A3C;
+    --navy-deep:   #050B22;
+    --gold:        #C9A561;
+    --gold-bright: #E6C97A;
+    --warm-white:  #FAF9F6;
+  }
+
+  body {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", serif;
+    color: var(--warm-white);
+    width: 297mm;
+    height: 420mm;
+    background:
+      linear-gradient(180deg,
+        rgba(5,11,34,0.55) 0%,
+        rgba(5,11,34,0.30) 40%,
+        rgba(5,11,34,0.85) 100%
+      ),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #122355 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 写真差し込み枠 (placeholder) — 背景に写真を入れる場合はここに <img> をabsolute配置 */
+  .photo-frame {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(201,165,97,0.10) 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  /* 上部装飾：細いゴールドライン（リボンよりも品のあるアクセント） */
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 110mm; height: 110mm;
+    background: radial-gradient(circle at 0 0,
+      rgba(201,165,97,0.35) 0%,
+      rgba(201,165,97,0.12) 30%,
+      transparent 60%);
+    z-index: 1;
+  }
+  .corner-tl { top: 0; left: 0; }
+  .corner-br {
+    bottom: 0; right: 0;
+    background: radial-gradient(circle at 100% 100%,
+      rgba(201,165,97,0.35) 0%,
+      rgba(201,165,97,0.12) 30%,
+      transparent 60%);
+  }
+
+  .frame-line {
+    position: absolute;
+    border: 0.6mm solid rgba(201,165,97,0.55);
+    top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 3;
+    padding: 18mm 24mm 22mm 24mm;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ヘッダー：主催者 */
+  .org {
+    text-align: center;
+    letter-spacing: 0.3em;
+    font-size: 9pt;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+  .org-jp {
+    font-family: "Yu Mincho", serif;
+    font-size: 10pt;
+    color: var(--warm-white);
+    letter-spacing: 0.2em;
+    margin-bottom: 8mm;
+    text-align: center;
+  }
+
+  /* 「第2回」表記 */
+  .edition {
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 18pt;
+    color: var(--gold);
+    margin-bottom: 2mm;
+  }
+  .edition-jp {
+    text-align: center;
+    font-size: 11pt;
+    letter-spacing: 0.5em;
+    color: var(--warm-white);
+    margin-bottom: 6mm;
+  }
+
+  /* メインタイトル */
+  .title {
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    line-height: 1.0;
+    margin-bottom: 12mm;
+  }
+  .title-line1 {
+    font-size: 64pt;
+    letter-spacing: 0.05em;
+    color: var(--warm-white);
+    display: block;
+  }
+  .title-line2 {
+    font-size: 56pt;
+    letter-spacing: 0.04em;
+    color: var(--gold-bright);
+    display: block;
+    margin-top: 3mm;
+    text-shadow: 0 0 3mm rgba(201,165,97,0.25);
+  }
+
+  /* 日付ブロック */
+  .date-block {
+    text-align: center;
+    margin: 14mm 0 10mm 0;
+    padding: 6mm 0;
+    border-top: 0.4mm solid rgba(201,165,97,0.5);
+    border-bottom: 0.4mm solid rgba(201,165,97,0.5);
+  }
+  .date-main {
+    font-family: "Times New Roman", serif;
+    font-size: 44pt;
+    font-weight: bold;
+    color: var(--warm-white);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+  }
+  .date-main .year { color: var(--gold-bright); }
+  .date-sub {
+    font-size: 13pt;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    margin-top: 3mm;
+  }
+  .date-jp {
+    font-size: 14pt;
+    letter-spacing: 0.3em;
+    color: var(--warm-white);
+    margin-top: 2mm;
+  }
+
+  /* 種目セクション */
+  .events-title {
+    text-align: center;
+    font-size: 12pt;
+    letter-spacing: 0.6em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 6mm 0 6mm 0;
+  }
+  .events {
+    text-align: center;
+    line-height: 2.0;
+    font-size: 16pt;
+    color: var(--warm-white);
+    letter-spacing: 0.02em;
+  }
+  .events .cat-label {
+    color: var(--gold-bright);
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    font-size: 11pt;
+    display: inline-block;
+    min-width: 22mm;
+  }
+  .events div { margin: 0.5mm 0; }
+  .events .featured {
+    color: var(--gold-bright);
+    font-weight: bold;
+  }
+
+  /* フッター情報 */
+  .footer {
+    margin-top: auto;
+    padding-top: 6mm;
+  }
+  .venue {
+    text-align: center;
+    margin-bottom: 6mm;
+  }
+  .venue-name {
+    font-size: 22pt;
+    font-weight: bold;
+    color: var(--warm-white);
+    letter-spacing: 0.15em;
+    margin-bottom: 2mm;
+  }
+  .venue-name .accent { color: var(--gold-bright); }
+  .venue-sub {
+    font-size: 11pt;
+    color: rgba(250,249,246,0.85);
+    letter-spacing: 0.1em;
+  }
+  .schedule {
+    text-align: center;
+    font-size: 12.5pt;
+    color: var(--warm-white);
+    margin-bottom: 10mm;
+    letter-spacing: 0.15em;
+  }
+  .schedule .sep {
+    color: var(--gold);
+    margin: 0 4mm;
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.3mm solid rgba(201,165,97,0.4);
+    padding-top: 5mm;
+  }
+  .info-row .left,
+  .info-row .right {
+    font-size: 9.5pt;
+    color: rgba(250,249,246,0.85);
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+  }
+  .info-row .center {
+    font-size: 10.5pt;
+    color: var(--gold-bright);
+    letter-spacing: 0.2em;
+    font-weight: bold;
+  }
+  .info-row a { color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="photo-frame"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <div class="frame-line"></div>
+
+  <div class="container">
+
+    <!-- ヘッダー -->
+    <div class="org">PRESENTED BY IDSF JAPAN</div>
+    <div class="org-jp">主催　一般社団法人 IDSF Japan　／　運営　LIBERADANCE</div>
+
+    <!-- 第2回 -->
+    <div class="edition">2<sup style="font-size:55%;">nd</sup> Edition</div>
+    <div class="edition-jp">第　二　回</div>
+
+    <!-- タイトル -->
+    <div class="title">
+      <span class="title-line1">IDSF JAPANESE</span>
+      <span class="title-line2">CHAMPIONSHIPS</span>
+    </div>
+
+    <div style="flex:1 1 0; min-height:8mm;"></div>
+
+    <!-- 日付 -->
+    <div class="date-block">
+      <div class="date-main">JUNE <span class="year">7</span>, 2026</div>
+      <div class="date-sub">SUNDAY</div>
+      <div class="date-jp">２０２６年　６月　７日（日）</div>
+    </div>
+
+    <div style="flex:1 1 0; min-height:8mm;"></div>
+
+    <!-- 種目 -->
+    <div class="events-title">— Categories —</div>
+    <div class="events">
+      <div class="featured">Adult Open Standard / Adult Open Latin</div>
+      <div class="featured">Adult Master Standard / Adult Master Latin</div>
+      <div>Senior 1–5 Standard / Senior 1–5 Latin</div>
+      <div>Under 21 Standard / Under 21 Latin</div>
+      <div>Under 16 Standard / Under 16 Latin</div>
+      <div>Juvenile Standard / Juvenile Latin</div>
+    </div>
+
+    <!-- フッター -->
+    <div style="flex:1 1 0; min-height:8mm;"></div>
+      <div class="footer">
+
+      <div class="venue">
+        <div class="venue-name">東京ドームホテル <span class="accent">B1F「天空」</span></div>
+        <div class="venue-sub">Tokyo Dome Hotel B1F "Tenku" — 東京都文京区後楽 / JR水道橋駅</div>
+      </div>
+
+      <div class="schedule">
+        START  16:15 <span class="sep">|</span> FINISH  19:15 <span class="sep">|</span> <span style="font-size:10pt;color:rgba(250,249,246,0.7);">（予定）</span>
+      </div>
+
+      <!-- 料金情報 -->
+      <div style="display:flex; justify-content:space-around; gap:8mm; margin: 0 0 10mm 0; padding: 6mm 4mm; border-top: 0.3mm solid rgba(201,165,97,0.4); border-bottom: 0.3mm solid rgba(201,165,97,0.4);">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:9pt; letter-spacing:0.3em; color:var(--gold); margin-bottom:3mm; font-weight:bold;">ENTRY FEE / 出場料</div>
+          <div style="font-family:'Times New Roman',serif; font-size:18pt; font-weight:bold; color:var(--warm-white); letter-spacing:0.04em;">¥8,000</div>
+          <div style="font-size:8pt; color:rgba(250,249,246,0.75); letter-spacing:0.08em; margin-top:2mm; line-height:1.6;">全カテゴリー共通</div>
+        </div>
+        <div style="width:0.2mm; background:rgba(201,165,97,0.4);"></div>
+        <div style="flex:1.6; text-align:center;">
+          <div style="font-size:9pt; letter-spacing:0.3em; color:var(--gold); margin-bottom:3mm; font-weight:bold;">SPECTATOR / 観戦料</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5mm 4mm; font-size:9pt; color:var(--warm-white); letter-spacing:0.05em; text-align:left; max-width:70mm; margin:0 auto;">
+            <span>席付き</span><span style="text-align:right; color:var(--gold-bright); font-weight:bold;">¥8,000</span>
+            <span>立ち見</span><span style="text-align:right; color:var(--gold-bright); font-weight:bold;">¥4,000</span>
+            <span>立ち見（学生）</span><span style="text-align:right; color:var(--gold-bright); font-weight:bold;">無料</span>
+            <span>中学生以下</span><span style="text-align:right; color:var(--gold-bright); font-weight:bold;">¥3,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row" style="padding-bottom:0; align-items:flex-start; border-top:none;">
+        <div class="left">
+          <span style="color:var(--gold-bright); font-weight:bold;">お問い合わせ</span><br>
+          TEL  03-3351-9298<br>
+          info@idsf-japan.com<br>
+          <span style="color: var(--gold-bright);">idsf-japan.com</span>
+        </div>
+        <div class="center" style="display:flex; flex-direction:column; align-items:center; gap:2mm;">
+          <div style="background:var(--warm-white); padding:2mm; border-radius:1mm;">
+            <img src="data:image/png;base64,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" style="width:24mm; height:24mm; display:block;">
+          </div>
+          <div style="font-size:9pt; letter-spacing:0.25em; color:var(--gold-bright); font-weight:bold;">ENTRY</div>
+          <div style="font-size:7pt; letter-spacing:0.05em; color:rgba(250,249,246,0.8); word-break:break-all; max-width:42mm;">forms.gle/2jF2ZJDBYQAwt66z6</div>
+        </div>
+        <div class="right" style="text-align:right;">
+          IDSF — International<br>
+          Dancesport Foundation<br>
+          <span style="color:var(--gold);">Headquarters: Italy</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

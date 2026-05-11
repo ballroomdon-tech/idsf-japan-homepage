@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>IDSF Japanese Championships 2026 — Poster A3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Raleway:wght@200;300;400;500;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1C1C28;
+    --navy-soft:#2A2A3A;
+    --gold:#B79450;
+    --gold-light:#D4B879;
+    --warm-white:#FAF9F6;
+    --paper:#FFFFFF;
+    --ink-60:rgba(28,28,40,.6);
+    --ink-40:rgba(28,28,40,.4);
+    --ink-20:rgba(28,28,40,.2);
+    --ink-10:rgba(28,28,40,.1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{
+    size:A3 portrait;
+    margin:0;
+  }
+  html,body{
+    background:var(--warm-white);
+    font-family:"Noto Sans JP",sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+    margin:0;padding:0;
+  }
+
+  /* A3 = 297mm x 420mm — fills the entire page */
+  .poster{
+    width:297mm;
+    height:420mm;
+    background:var(--warm-white);
+    position:relative;
+    overflow:hidden;
+    margin:0;
+    padding:0;
+  }
+
+  /* Outer frame - Gold double border */
+  .frame{
+    position:absolute;
+    top:8mm;right:8mm;bottom:8mm;left:8mm;
+    border:0.5mm solid var(--gold);
+    pointer-events:none;
+  }
+  .frame::before{
+    content:"";
+    position:absolute;
+    top:1.5mm;right:1.5mm;bottom:1.5mm;left:1.5mm;
+    border:0.15mm solid var(--gold);
+  }
+
+  /* Corner ornaments */
+  .corner{
+    position:absolute;
+    width:14mm;
+    height:14mm;
+    pointer-events:none;
+  }
+  .corner svg{width:100%;height:100%;display:block}
+  .corner.tl{top:6mm;left:6mm}
+  .corner.tr{top:6mm;right:6mm;transform:scaleX(-1)}
+  .corner.bl{bottom:6mm;left:6mm;transform:scaleY(-1)}
+  .corner.br{bottom:6mm;right:6mm;transform:scale(-1,-1)}
+
+  /* Inner padding */
+  .inner{
+    position:absolute;
+    top:18mm;right:16mm;bottom:18mm;left:16mm;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Header */
+  .header{
+    text-align:center;
+    padding-top:2mm;
+  }
+  .eyebrow{
+    font-family:"Raleway",sans-serif;
+    font-size:9pt;
+    letter-spacing:0.5em;
+    color:var(--gold);
+    font-weight:500;
+    margin-bottom:6mm;
+    text-indent:0.5em;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:"";
+    display:inline-block;
+    width:14mm;
+    height:1px;
+    background:var(--gold);
+    vertical-align:middle;
+    margin:0 4mm;
+  }
+
+  /* Main Title */
+  .title-en{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:500;
+    font-size:54pt;
+    line-height:1.0;
+    color:var(--navy);
+    letter-spacing:0.04em;
+    margin-bottom:3mm;
+  }
+  .title-en .accent{color:var(--gold);font-style:italic;font-weight:400}
+
+  .title-ja{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    font-size:14pt;
+    letter-spacing:0.6em;
+    color:var(--navy);
+    margin-bottom:5mm;
+    text-indent:0.6em;
+  }
+
+  .year-band{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6mm;
+    margin-top:2mm;
+    margin-bottom:7mm;
+  }
+  .year-band .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    max-width:50mm;
+  }
+  .year{
+    font-family:"Raleway",sans-serif;
+    font-weight:200;
+    font-size:38pt;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    text-indent:0.3em;
+  }
+
+  /* Hero strip */
+  .hero{
+    text-align:center;
+    padding:6mm 0 5mm;
+    border-top:0.3mm solid var(--gold);
+    border-bottom:0.3mm solid var(--gold);
+    margin-bottom:7mm;
+    position:relative;
+  }
+  .hero::before, .hero::after{
+    content:"◆";
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    font-size:6pt;
+    background:var(--warm-white);
+    padding:0 3mm;
+  }
+  .hero::before{left:50%;margin-left:-30mm;display:none}
+  .hero::after{right:0;display:none}
+
+  .date-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:baseline;
+    gap:4mm;
+    margin-bottom:2mm;
+  }
+  .date-main{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:600;
+    font-size:32pt;
+    color:var(--navy);
+    letter-spacing:0.02em;
+    line-height:1;
+  }
+  .date-main .day{color:var(--gold)}
+  .date-sub{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    font-size:11pt;
+    color:var(--navy);
+    letter-spacing:0.15em;
+  }
+  .venue{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:400;
+    font-size:11pt;
+    color:var(--navy);
+    letter-spacing:0.18em;
+    margin-top:3mm;
+  }
+  .venue .name{font-weight:700}
+
+  /* Two column body */
+  .body-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9mm;
+    margin-bottom:6mm;
+  }
+  .col{}
+  .section-title{
+    font-family:"Raleway",sans-serif;
+    font-weight:600;
+    font-size:8pt;
+    letter-spacing:0.4em;
+    color:var(--gold);
+    text-indent:0.4em;
+    margin-bottom:3mm;
+    padding-bottom:1.5mm;
+    border-bottom:0.2mm solid var(--gold);
+    display:flex;
+    align-items:center;
+    gap:2mm;
+  }
+  .section-title .ja{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    font-size:8.5pt;
+    letter-spacing:0.25em;
+    color:var(--navy);
+    margin-left:auto;
+    text-indent:0.25em;
+  }
+
+  /* Schedule */
+  .schedule-list{
+    list-style:none;
+    font-family:"Noto Sans JP",sans-serif;
+  }
+  .schedule-list li{
+    display:flex;
+    align-items:baseline;
+    padding:1.6mm 0;
+    border-bottom:0.1mm dotted var(--ink-20);
+    font-size:9pt;
+    letter-spacing:0.05em;
+  }
+  .schedule-list li:last-child{border-bottom:none}
+  .schedule-list .time{
+    font-family:"Raleway",sans-serif;
+    font-weight:500;
+    font-size:10pt;
+    color:var(--gold);
+    width:22mm;
+    letter-spacing:0.08em;
+  }
+  .schedule-list .label{flex:1;color:var(--navy)}
+
+  /* Fees */
+  .fees{font-family:"Noto Sans JP",sans-serif;font-size:8.5pt;line-height:1.7}
+  .fee-block{margin-bottom:3.5mm}
+  .fee-block:last-child{margin-bottom:0}
+  .fee-heading{
+    font-weight:600;
+    font-size:8.5pt;
+    letter-spacing:0.2em;
+    color:var(--navy);
+    margin-bottom:1.5mm;
+    padding-left:2mm;
+    border-left:0.6mm solid var(--gold);
+  }
+  .fee-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:0.8mm 0 0.8mm 2mm;
+    border-bottom:0.1mm dotted var(--ink-20);
+  }
+  .fee-row:last-child{border-bottom:none}
+  .fee-row .name{font-size:8.5pt;color:var(--navy)}
+  .fee-row .amount{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:600;
+    font-size:11pt;
+    color:var(--gold);
+    letter-spacing:0.02em;
+  }
+  .fee-row .amount.free{color:var(--navy);font-style:italic;font-size:9pt}
+  .fee-note{
+    font-size:7pt;
+    color:var(--ink-60);
+    margin-top:1.5mm;
+    line-height:1.5;
+  }
+
+  /* Categories */
+  .categories{
+    margin-bottom:6mm;
+  }
+  .cat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4mm 8mm;
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:8.5pt;
+    line-height:1.7;
+  }
+  .cat-col h4{
+    font-family:"Raleway",sans-serif;
+    font-weight:500;
+    font-size:9pt;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    margin-bottom:2mm;
+    padding-bottom:1mm;
+    border-bottom:0.15mm solid var(--ink-20);
+  }
+  .cat-col h4 .small{
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:400;
+    font-size:7.5pt;
+    color:var(--ink-60);
+    letter-spacing:0.1em;
+    margin-left:1mm;
+  }
+  .cat-col ul{list-style:none}
+  .cat-col li{
+    padding:1.0mm 0;
+    border-bottom:0.1mm dotted var(--ink-20);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .cat-col li:last-child{border-bottom:none}
+  .cat-col li .name{font-weight:400;color:var(--navy);font-size:8.2pt}
+  .cat-col li .age{
+    font-family:"Raleway",sans-serif;
+    font-size:7pt;
+    color:var(--ink-60);
+    letter-spacing:0.05em;
+  }
+
+  .dance-codes{
+    margin-top:3mm;
+    font-size:7.5pt;
+    color:var(--ink-60);
+    text-align:center;
+    line-height:1.6;
+    letter-spacing:0.05em;
+  }
+  .dance-codes strong{color:var(--navy);font-weight:500}
+
+  /* Footer info */
+  .footer-grid{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:8mm;
+    margin-top:auto;
+    padding-top:5mm;
+    border-top:0.3mm solid var(--gold);
+  }
+  .qr{
+    width:24mm;
+    height:24mm;
+    min-width:24mm;
+    background:var(--paper);
+    border:0.2mm solid var(--ink-20);
+    padding:1.5mm;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .qr img{width:100%;height:100%;display:block}
+  .footer-info{flex:1}
+  .footer-info{
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:8pt;
+    line-height:1.7;
+    color:var(--navy);
+  }
+  .footer-info .lead{
+    font-family:"Raleway",sans-serif;
+    font-size:8pt;
+    letter-spacing:0.35em;
+    color:var(--gold);
+    text-indent:0.35em;
+    margin-bottom:1mm;
+    font-weight:500;
+  }
+  .footer-info .url{
+    font-family:"Raleway",sans-serif;
+    font-size:11pt;
+    font-weight:500;
+    color:var(--navy);
+    letter-spacing:0.05em;
+  }
+  .footer-info .contact{
+    font-size:7.5pt;
+    color:var(--ink-60);
+    margin-top:1mm;
+  }
+  .deadline{
+    text-align:right;
+    font-family:"Noto Sans JP",sans-serif;
+  }
+  .deadline .small{
+    font-family:"Raleway",sans-serif;
+    font-size:7pt;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    text-indent:0.3em;
+  }
+  .deadline .date{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:600;
+    font-size:13pt;
+    color:var(--navy);
+    letter-spacing:0.02em;
+    margin-top:0.5mm;
+  }
+
+  /* Bottom organizer line */
+  .organizer{
+    text-align:center;
+    margin-top:4mm;
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:7.5pt;
+    color:var(--ink-60);
+    letter-spacing:0.3em;
+    text-indent:0.3em;
+  }
+  .organizer strong{color:var(--navy);font-weight:500}
+
+</style>
+</head>
+<body>
+  <div class="poster">
+    <!-- Decorative frame -->
+    <div class="frame"></div>
+
+    <!-- Corner ornaments -->
+    <div class="corner tl">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5,5 L40,5 M5,5 L5,40" stroke="#B79450" stroke-width="0.8" fill="none"/>
+        <path d="M5,15 Q15,15 15,5" stroke="#B79450" stroke-width="0.5" fill="none"/>
+        <circle cx="5" cy="5" r="1.2" fill="#B79450"/>
+        <path d="M20,5 L25,8 M30,5 L35,8" stroke="#B79450" stroke-width="0.4" fill="none"/>
+      </svg>
+    </div>
+    <div class="corner tr">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5,5 L40,5 M5,5 L5,40" stroke="#B79450" stroke-width="0.8" fill="none"/>
+        <path d="M5,15 Q15,15 15,5" stroke="#B79450" stroke-width="0.5" fill="none"/>
+        <circle cx="5" cy="5" r="1.2" fill="#B79450"/>
+      </svg>
+    </div>
+    <div class="corner bl">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5,5 L40,5 M5,5 L5,40" stroke="#B79450" stroke-width="0.8" fill="none"/>
+        <path d="M5,15 Q15,15 15,5" stroke="#B79450" stroke-width="0.5" fill="none"/>
+        <circle cx="5" cy="5" r="1.2" fill="#B79450"/>
+      </svg>
+    </div>
+    <div class="corner br">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5,5 L40,5 M5,5 L5,40" stroke="#B79450" stroke-width="0.8" fill="none"/>
+        <path d="M5,15 Q15,15 15,5" stroke="#B79450" stroke-width="0.5" fill="none"/>
+        <circle cx="5" cy="5" r="1.2" fill="#B79450"/>
+      </svg>
+    </div>
+
+    <div class="inner">
+
+      <!-- Header -->
+      <div class="header">
+        <div class="eyebrow">IDSF JAPAN PRESENTS</div>
+        <h1 class="title-en">Japanese <span class="accent">Championships</span></h1>
+        <div class="title-ja">全 日 本 選 手 権</div>
+        <div class="year-band">
+          <span class="line"></span>
+          <span class="year">2026</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <!-- Hero strip: date & venue -->
+      <div class="hero">
+        <div class="date-wrap">
+          <span class="date-main">June <span class="day">7</span>, 2026</span>
+          <span class="date-sub">［ 日 ］</span>
+        </div>
+        <div class="venue">
+          <span class="name">東京ドームホテル</span>　B1F「天空」
+        </div>
+      </div>
+
+      <!-- Two column: schedule & fees -->
+      <div class="body-grid">
+        <div class="col">
+          <h3 class="section-title">SCHEDULE <span class="ja">タイムスケジュール</span></h3>
+          <ul class="schedule-list">
+            <li><span class="time">15:30</span><span class="label">受付開始</span></li>
+            <li><span class="time">16:15</span><span class="label">競技開始</span></li>
+            <li><span class="time">19:15</span><span class="label">競技終了（予定）</span></li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3 class="section-title">ADMISSION <span class="ja">出場料・観戦料</span></h3>
+          <div class="fees">
+            <div class="fee-block">
+              <div class="fee-heading">出場料 ENTRY</div>
+              <div class="fee-row"><span class="name">選手</span><span class="amount">¥8,000</span></div>
+            </div>
+            <div class="fee-block">
+              <div class="fee-heading">観戦料 SPECTATOR</div>
+              <div class="fee-row"><span class="name">席付き</span><span class="amount">¥8,000</span></div>
+              <div class="fee-row"><span class="name">立ち見</span><span class="amount">¥4,000</span></div>
+              <div class="fee-row"><span class="name">立ち見（学生）</span><span class="amount free">無料</span></div>
+              <div class="fee-row"><span class="name">中学生以下</span><span class="amount">¥3,000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="categories">
+        <h3 class="section-title">COMPETITION CATEGORIES <span class="ja">競技カテゴリー（全20区分）</span></h3>
+        <div class="cat-grid">
+          <div class="cat-col">
+            <h4>STANDARD <span class="small">／ ボールルーム</span></h4>
+            <ul>
+              <li><span class="name">Adult Open</span><span class="age">アマチュア</span></li>
+              <li><span class="name">Adult Master</span><span class="age">プロ／団体問わず</span></li>
+              <li><span class="name">Senior 1</span><span class="age">35歳以上</span></li>
+              <li><span class="name">Senior 2</span><span class="age">45歳以上</span></li>
+              <li><span class="name">Senior 3</span><span class="age">55歳以上</span></li>
+              <li><span class="name">Senior 4</span><span class="age">65歳以上</span></li>
+              <li><span class="name">Senior 5</span><span class="age">75歳以上</span></li>
+              <li><span class="name">Under 21</span><span class="age">21歳以下</span></li>
+              <li><span class="name">Under 16</span><span class="age">16歳以下</span></li>
+              <li><span class="name">Juvenile</span><span class="age">12歳以下</span></li>
+            </ul>
+          </div>
+          <div class="cat-col">
+            <h4>LATIN <span class="small">／ ラテンアメリカン</span></h4>
+            <ul>
+              <li><span class="name">Adult Open</span><span class="age">アマチュア</span></li>
+              <li><span class="name">Adult Master</span><span class="age">プロ／団体問わず</span></li>
+              <li><span class="name">Senior 1</span><span class="age">35歳以上</span></li>
+              <li><span class="name">Senior 2</span><span class="age">45歳以上</span></li>
+              <li><span class="name">Senior 3</span><span class="age">55歳以上</span></li>
+              <li><span class="name">Senior 4</span><span class="age">65歳以上</span></li>
+              <li><span class="name">Senior 5</span><span class="age">75歳以上</span></li>
+              <li><span class="name">Under 21</span><span class="age">21歳以下</span></li>
+              <li><span class="name">Under 16</span><span class="age">16歳以下</span></li>
+              <li><span class="name">Juvenile</span><span class="age">12歳以下</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dance-codes">
+          <strong>Standard</strong>: W (Waltz) ／ T (Tango) ／ V (V.Waltz) ／ F (Foxtrot) ／ Q (Quickstep)
+          <strong>Latin</strong>: S (Samba) ／ C (Cha Cha) ／ R (Rumba) ／ P (Paso Doble) ／ J (Jive)
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-grid">
+        <div class="qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=https%3A%2F%2Fidsf-japan.com%2Fevents.html" alt="エントリーQRコード">
+        </div>
+        <div class="footer-info">
+          <div class="lead">ENTRY &amp; INFORMATION</div>
+          <div class="url">idsf-japan.com</div>
+          <div class="contact">TEL  03-3351-9298　／　info@idsf-japan.com</div>
+        </div>
+        <div class="deadline">
+          <div class="small">ENTRY DEADLINE</div>
+          <div class="date">2026.05.24<span style="font-size:8pt;color:var(--ink-60);font-family:'Noto Sans JP';"> ［日］</span></div>
+        </div>
+      </div>
+
+      <div class="organizer">
+        主催 <strong>一般社団法人 IDSF Japan</strong>　／　運営 <strong>LIBERADANCE</strong>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

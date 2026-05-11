@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大会結果 | Star Cup 新宿 2026/5/10 | IDSF Japan</title>
+  <meta name="description" content="IDSF Japan 主催・公認大会の結果アーカイブ。Star Cup 新宿（2026年5月10日 新宿コズミックセンター）の全カテゴリー成績を掲載。スタンダード・ラテン各部門の上位入賞者を確認できます。">
+  <meta name="keywords" content="Star Cup 結果,社交ダンス 大会結果,ダンススポーツ 結果,IDSF Japan 結果,新宿 ダンス大会">
+  <meta property="og:title" content="大会結果 | Star Cup 新宿 2026/5/10 | IDSF Japan">
+  <meta property="og:description" content="Star Cup 新宿（2026年5月10日 新宿コズミックセンター）全カテゴリーの成績結果。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idsf-japan.com/results">
+  <meta property="og:image" content="https://idsf-japan.com/images/og-image.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="IDSF Japan">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="大会結果 | IDSF Japan">
+  <meta name="twitter:description" content="Star Cup 新宿 2026/5/10 の全カテゴリー成績結果。">
+  <link rel="canonical" href="https://idsf-japan.com/results">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========================================
+       Results ページ専用スタイル
+    ======================================== */
+
+    /* 大会セレクト（将来複数大会対応） */
+    .results-meet {
+      background: var(--color-bg-subtle);
+      border-left: 3px solid var(--color-gold);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+      border-radius: var(--border-radius);
+    }
+    .results-meet__label {
+      display: inline-block;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--color-gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .results-meet__title {
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      margin: 0 0 0.5rem;
+      line-height: 1.4;
+    }
+    .results-meet__sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: var(--fs-small);
+      color: var(--color-text-light);
+    }
+    .results-meet__sub span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .results-meet__sub svg {
+      color: var(--color-gold-dark);
+      flex-shrink: 0;
+    }
+
+    /* カテゴリーフィルタ */
+    .results-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .results-filter__btn {
+      padding: 0.45rem 1rem;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-text-light);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .results-filter__btn:hover {
+      border-color: var(--color-gold);
+      color: var(--color-navy);
+    }
+    .results-filter__btn.active {
+      background: var(--color-navy);
+      border-color: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    /* 結果カードグリッド */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 720px) {
+      .results-grid { grid-template-columns: 1fr; }
+    }
+
+    /* 個別結果カード */
+    .result-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+    }
+    .result-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .result-card__header {
+      padding: 0.9rem 1.25rem;
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+      color: var(--color-white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .result-card__item-no {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-gold-light);
+      opacity: 0.9;
+    }
+    .result-card__cat {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      flex: 1;
+      line-height: 1.4;
+    }
+    .result-card__discipline {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .result-card__discipline--std {
+      background: rgba(183, 148, 80, 0.25);
+      color: var(--color-gold-light);
+    }
+    .result-card__discipline--lat {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--color-warm-white);
+    }
+
+    /* 順位リスト */
+    .result-card__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .result-card__row {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--color-border-light);
+      transition: background var(--transition-fast);
+    }
+    .result-card__row:last-child { border-bottom: none; }
+    .result-card__row:hover { background: var(--color-bg-subtle); }
+
+    .result-card__rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--color-bg-subtle);
+      color: var(--color-text);
+    }
+    .result-card__rank--1 {
+      background: linear-gradient(135deg, #d4af37 0%, #b79450 100%);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(183, 148, 80, 0.4);
+    }
+    .result-card__rank--2 {
+      background: linear-gradient(135deg, #cdd1d4 0%, #9fa4a8 100%);
+      color: #fff;
+    }
+    .result-card__rank--3 {
+      background: linear-gradient(135deg, #cd8c5c 0%, #a86c40 100%);
+      color: #fff;
+    }
+
+    .result-card__couple {
+      font-size: var(--fs-small);
+      color: var(--color-text-strong);
+      font-weight: 500;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .result-card__no {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      color: var(--color-text-light);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* 審査員 */
+    .result-card__meta {
+      padding: 0.65rem 1.25rem;
+      background: var(--color-bg-subtle);
+      font-size: 0.7rem;
+      color: var(--color-text-light);
+      line-height: 1.7;
+      border-top: 1px solid var(--color-border-light);
+    }
+    .result-card__meta strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    /* 空状態 */
+    .results-empty {
+      text-align: center;
+      padding: var(--space-xl) 0;
+      color: var(--color-text-light);
+    }
+
+    /* セクション内見出し（地域・カテゴリーグループ） */
+    .results-section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text-strong);
+      margin: var(--space-lg) 0 var(--space-sm);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--color-gold);
+      letter-spacing: 0.04em;
+      display: inline-block;
+    }
+    .results-section-title:first-of-type { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://idsf-japan.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Results", "item": "https://idsf-japan.com/results" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+      <nav class="main-nav" role="navigation" aria-label="メインナビゲーション">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="events.html">Events</a>
+        <a href="rules.html">Rules</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" role="navigation" aria-label="モバイルナビゲーション">
+    <a href="/">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="rules.html">Rules</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container" data-reveal>
+      <h1>Results</h1>
+      <p>大会結果アーカイブ</p>
+    </div>
+  </section>
+
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li>Results</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Results Main -->
+  <section class="section">
+    <div class="container">
+
+      <!-- 大会タイトル -->
+      <div class="results-meet" data-reveal>
+        <span class="results-meet__label">Tournament Result</span>
+        <h2 class="results-meet__title">Star Cup 新宿 2026</h2>
+        <div class="results-meet__sub">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2026年5月10日（日）
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            新宿コズミックセンター（東京都新宿区）
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            全16カテゴリー
+          </span>
+        </div>
+      </div>
+
+      <!-- カテゴリーフィルタ -->
+      <div class="results-filter" role="tablist" aria-label="カテゴリー絞り込み">
+        <button class="results-filter__btn active" data-filter="all">すべて</button>
+        <button class="results-filter__btn" data-filter="adult">アダルト</button>
+        <button class="results-filter__btn" data-filter="senior">シニア</button>
+        <button class="results-filter__btn" data-filter="u16">U-16</button>
+        <button class="results-filter__btn" data-filter="juvenile">ジュブナイル</button>
+        <button class="results-filter__btn" data-filter="children">チルドレン</button>
+        <button class="results-filter__btn" data-filter="std">スタンダード</button>
+        <button class="results-filter__btn" data-filter="lat">ラテン</button>
+      </div>
+
+      <!-- ========================================
+           アダルト
+      ======================================== -->
+      <h3 class="results-section-title">アダルト</h3>
+      <div class="results-grid">
+
+        <!-- Item 20: アダルトオープン スタンダード -->
+        <article class="result-card" data-tags="adult std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 20</div>
+              <div class="result-card__cat">アダルトオープン スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">杉山 大悟 / 須田 美咲</span>
+              <span class="result-card__no">#42</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">柿澤 夏月 / 小堤 帆夏</span>
+              <span class="result-card__no">#57</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">井波 龍一 / 安井 奈々恵</span>
+              <span class="result-card__no">#38</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">4</span>
+              <span class="result-card__couple">星野 浩基 / 西尾 成珠</span>
+              <span class="result-card__no">#36</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">5</span>
+              <span class="result-card__couple">トコール アルトゥン / 土屋 恵梨</span>
+              <span class="result-card__no">#48</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 09: アダルトオープン ラテン -->
+        <article class="result-card" data-tags="adult lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 09</div>
+              <div class="result-card__cat">アダルトオープン ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">杉山 大悟 / 須田 美咲</span>
+              <span class="result-card__no">#42</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">柿澤 夏月 / 小堤 帆夏</span>
+              <span class="result-card__no">#57</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">トコール アルトゥン / 土屋 恵梨</span>
+              <span class="result-card__no">#48</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">4</span>
+              <span class="result-card__couple">星野 浩基 / 西尾 成珠</span>
+              <span class="result-card__no">#36</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">5</span>
+              <span class="result-card__couple">河原 正浩 / 河原 孝子</span>
+              <span class="result-card__no">#11</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">6</span>
+              <span class="result-card__couple">井波 龍一 / 安井 奈々恵</span>
+              <span class="result-card__no">#38</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 18: アダルトC スタンダード -->
+        <article class="result-card" data-tags="adult std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 18</div>
+              <div class="result-card__cat">アダルトC スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / T / Q　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 07: アダルトC ラテン -->
+        <article class="result-card" data-tags="adult lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 07</div>
+              <div class="result-card__cat">アダルトC ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / R　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 14: アダルトD スタンダード ワルツ -->
+        <article class="result-card" data-tags="adult std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 14</div>
+              <div class="result-card__cat">アダルトD スタンダード ワルツ</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 達三 / 鈴木 令子</span>
+              <span class="result-card__no">#52</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">斉藤 尚 / 岡田 尚子</span>
+              <span class="result-card__no">#18</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>Waltz（単科）　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 15: アダルトD スタンダード タンゴ -->
+        <article class="result-card" data-tags="adult std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 15</div>
+              <div class="result-card__cat">アダルトD スタンダード タンゴ</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 達三 / 鈴木 令子</span>
+              <span class="result-card__no">#52</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">斉藤 尚 / 岡田 尚子</span>
+              <span class="result-card__no">#18</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>Tango（単科）　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 03: アダルトD ラテン チャチャチャ -->
+        <article class="result-card" data-tags="adult lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 03</div>
+              <div class="result-card__cat">アダルトD ラテン チャチャチャ</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 達三 / 鈴木 令子</span>
+              <span class="result-card__no">#52</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">斉藤 尚 / 岡田 尚子</span>
+              <span class="result-card__no">#18</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>Cha Cha Cha（単科）　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 04: アダルトD ラテン ルンバ -->
+        <article class="result-card" data-tags="adult lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 04</div>
+              <div class="result-card__cat">アダルトD ラテン ルンバ</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">小澤 三郎 / 吉沼 美樹</span>
+              <span class="result-card__no">#30</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">斉藤 尚 / 岡田 尚子</span>
+              <span class="result-card__no">#18</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">長谷川 達三 / 鈴木 令子</span>
+              <span class="result-card__no">#52</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>Rumba（単科）　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ========================================
+           シニア
+      ======================================== -->
+      <h3 class="results-section-title">シニア</h3>
+      <div class="results-grid">
+
+        <!-- Item 16: シニア1オープン スタンダード -->
+        <article class="result-card" data-tags="senior std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 16</div>
+              <div class="result-card__cat">シニア１オープン スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">井波 龍一 / 安井 奈々恵</span>
+              <span class="result-card__no">#38</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">星野 浩基 / 西尾 成珠</span>
+              <span class="result-card__no">#36</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">佐藤 広明 / 森位 友貴</span>
+              <span class="result-card__no">#21</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
+          </div>
+        </article>
+
+        <!-- Item 05: シニア1オープン ラテン -->
+        <article class="result-card" data-tags="senior lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 05</div>
+              <div class="result-card__cat">シニア１オープン ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">星野 浩基 / 西尾 成珠</span>
+              <span class="result-card__no">#36</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">佐藤 広明 / 森位 友貴</span>
+              <span class="result-card__no">#21</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">河原 正浩 / 河原 孝子</span>
+              <span class="result-card__no">#11</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">4</span>
+              <span class="result-card__couple">井波 龍一 / 安井 奈々恵</span>
+              <span class="result-card__no">#38</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ========================================
+           U-16
+      ======================================== -->
+      <h3 class="results-section-title">U-16</h3>
+      <div class="results-grid">
+
+        <!-- Item 06: U-16オープン スタンダード -->
+        <article class="result-card" data-tags="u16 std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 06</div>
+              <div class="result-card__cat">U-16オープン スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__no">#59</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / T / VW / Q　｜<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 17: U-16オープン ラテン -->
+        <article class="result-card" data-tags="u16 lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 17</div>
+              <div class="result-card__cat">U-16オープン ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__no">#59</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ========================================
+           ジュブナイル
+      ======================================== -->
+      <h3 class="results-section-title">ジュブナイル</h3>
+      <div class="results-grid">
+
+        <!-- Item 08: ジュブナイルオープン スタンダード -->
+        <article class="result-card" data-tags="juvenile std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 08</div>
+              <div class="result-card__cat">ジュブナイルオープン スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__no">#22</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">4</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / T / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 19: ジュブナイルオープン ラテン -->
+        <article class="result-card" data-tags="juvenile lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 19</div>
+              <div class="result-card__cat">ジュブナイルオープン ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__no">#22</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank">4</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / R / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ========================================
+           チルドレン
+      ======================================== -->
+      <h3 class="results-section-title">チルドレン</h3>
+      <div class="results-grid">
+
+        <!-- Item 01: 3/6 C スタンダード / 7/9 C スタンダード -->
+        <article class="result-card" data-tags="children std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 01</div>
+              <div class="result-card__cat">3/6 C スタンダード / 7/9 C スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__no">#22</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 12: 3/6 C ラテン / 7/9 C ラテン -->
+        <article class="result-card" data-tags="children lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 12</div>
+              <div class="result-card__cat">3/6 C ラテン / 7/9 C ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__no">#34</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__no">#22</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--3">3</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 02: 10/11 C スタンダード / 12/13 C スタンダード -->
+        <article class="result-card" data-tags="children std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 02</div>
+              <div class="result-card__cat">10/11 C スタンダード / 12/13 C スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__no">#59</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+        <!-- Item 13: 10/11 C ラテン / 12/13 C ラテン -->
+        <article class="result-card" data-tags="children lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 13</div>
+              <div class="result-card__cat">10/11 C ラテン / 12/13 C ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__no">#59</span>
+            </li>
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+          </div>
+        </article>
+
+      </div>
+
+      <!-- 結果なし表示 -->
+      <div class="results-empty" id="results-empty" hidden>
+        <p>該当するカテゴリーの結果がありません。</p>
+      </div>
+
+      <!-- 補足説明 -->
+      <div style="margin-top: var(--space-xl); padding: var(--space-md); background: var(--color-bg-subtle); border-radius: var(--border-radius); font-size: var(--fs-small); color: var(--color-text-light); line-height: 1.9;">
+        <p style="margin: 0;">
+          <strong style="color: var(--color-text-strong);">記載について</strong><br>
+          結果は当日の競技順位に基づき、IDSF Japan が公式記録として掲載しています。<br>
+          スクルーティニア / チェアマン：Stefan Green<br>
+          記載内容に誤りがある場合は <a href="contact.html" style="color: var(--color-gold-dark); font-weight: 600;">お問い合わせ</a> よりご連絡ください。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container text-center" data-reveal>
+      <h2>次回大会のお知らせ</h2>
+      <p style="max-width:600px;margin:var(--space-sm) auto var(--space-md);color:var(--color-text-on-dark-muted);">
+        2026年6月7日（日）開催の全日本ダンススポーツ選手権、続く Italian Open 2026 など、IDSF Japan が主催・サポートする大会情報は Events ページからご確認ください。
+      </p>
+      <a href="events.html" class="btn btn--outline-white">大会スケジュールを見る</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+          <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部（International Dancesport Japan）。社交ダンス・ダンススポーツの普及と国際交流を推進します。</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/idsfproduct_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://x.com/idsf_japan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://lin.ee/IDSFJAPAN" target="_blank" rel="noopener noreferrer" aria-label="LINE公式アカウント">
+              <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Pages</h4>
+          <a href="/">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="rules.html">Rules</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-nav">
+          <h4>Info</h4>
+          <a href="contact.html">お問い合わせ</a>
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+        <div class="footer-hq">
+          <h4>IDSF Headquarters</h4>
+          <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__logo" aria-label="IDSF本部 公式サイトを開く（新しいタブ）">
+            <img src="images/logo-idsf.png" alt="International DanceSport Foundation" loading="lazy" width="220" height="40">
+          </a>
+          <p class="footer-hq__desc">イタリアに本部を置く International DanceSport Foundation の公式サイト。</p>
+          <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__link">
+            dancesportlive.info
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IDSF Japan. All rights reserved.</p>
+        <p>IDSF本部直轄 日本支部</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // カテゴリーフィルタリング
+    (function() {
+      const buttons = document.querySelectorAll('.results-filter__btn');
+      const cards = document.querySelectorAll('.result-card');
+      const sections = document.querySelectorAll('.results-section-title, .results-grid');
+      const empty = document.getElementById('results-empty');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          let visibleCount = 0;
+          cards.forEach(card => {
+            const tags = (card.dataset.tags || '').split(' ');
+            const show = filter === 'all' || tags.includes(filter);
+            card.style.display = show ? '' : 'none';
+            if (show) visibleCount++;
+          });
+
+          // セクション見出しを、配下に表示カードがなければ隠す
+          document.querySelectorAll('.results-grid').forEach(grid => {
+            const visibleInGrid = Array.from(grid.querySelectorAll('.result-card'))
+              .some(c => c.style.display !== 'none');
+            const prevTitle = grid.previousElementSibling;
+            if (prevTitle && prevTitle.classList.contains('results-section-title')) {
+              prevTitle.style.display = visibleInGrid ? '' : 'none';
+            }
+            grid.style.display = visibleInGrid ? '' : 'none';
+          });
+
+          empty.hidden = visibleCount > 0;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
