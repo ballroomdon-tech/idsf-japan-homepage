@@ -277,11 +277,12 @@
     <div class="container">
       <a href="/" class="site-logo">IDSF <span>Japan</span></a>
       <nav class="main-nav" role="navigation" aria-label="メインナビゲーション">
-        <a href="/">Home</a>
-        <a href="about.html">About</a>
-        <a href="events.html">Events</a>
-        <a href="rules.html">Rules</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">ホーム</a>
+        <a href="about.html">団体について</a>
+        <a href="events.html">競技会</a>
+        <a href="results.html" class="active">大会結果</a>
+        <a href="rules.html">競技規則</a>
+        <a href="contact.html">お問い合わせ</a>
       </nav>
       <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -289,17 +290,18 @@
     </div>
   </header>
   <nav class="mobile-nav" role="navigation" aria-label="モバイルナビゲーション">
-    <a href="/">Home</a>
-    <a href="about.html">About</a>
-    <a href="events.html">Events</a>
-    <a href="rules.html">Rules</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">ホーム</a>
+    <a href="about.html">団体について</a>
+    <a href="events.html">競技会</a>
+    <a href="results.html" class="active">大会結果</a>
+    <a href="rules.html">競技規則</a>
+    <a href="contact.html">お問い合わせ</a>
   </nav>
 
   <!-- Page Header -->
   <section class="page-header">
     <div class="container" data-reveal>
-      <h1>Results</h1>
+      <h1>大会結果</h1>
       <p>大会結果アーカイブ</p>
     </div>
   </section>
@@ -307,8 +309,8 @@
   <nav class="breadcrumb" aria-label="パンくずリスト">
     <div class="container">
       <ol>
-        <li><a href="/">Home</a></li>
-        <li>Results</li>
+        <li><a href="/">ホーム</a></li>
+        <li>大会結果</li>
       </ol>
     </div>
   </nav>
@@ -332,8 +334,18 @@
           </span>
           <span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            全16カテゴリー
+            全20カテゴリー（一部合同審査）
           </span>
+        </div>
+        <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="results/star-cup-shinjuku-2026-05-10.pdf" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: var(--color-navy); color: var(--color-white); border-radius: var(--border-radius); font-size: var(--fs-small); font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: all var(--transition-base);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            公式リザルトPDFを開く
+          </a>
+          <a href="results/star-cup-shinjuku-2026-05-10.pdf" download style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: var(--color-white); color: var(--color-navy); border: 1px solid var(--color-border); border-radius: var(--border-radius); font-size: var(--fs-small); font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: all var(--transition-base);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            ダウンロード
+          </a>
         </div>
       </div>
 
@@ -841,12 +853,33 @@
       <h3 class="results-section-title">チルドレン</h3>
       <div class="results-grid">
 
-        <!-- Item 01: 3/6 C スタンダード / 7/9 C スタンダード -->
+        <!-- Item 01-a: 3/6 C スタンダード -->
         <article class="result-card" data-tags="children std">
           <header class="result-card__header">
             <div>
               <div class="result-card__item-no">Item 01</div>
-              <div class="result-card__cat">3/6 C スタンダード / 7/9 C スタンダード</div>
+              <div class="result-card__cat">3/6 C スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>7/9 C と合同審査
+          </div>
+        </article>
+
+        <!-- Item 01-b: 7/9 C スタンダード -->
+        <article class="result-card" data-tags="children std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 01</div>
+              <div class="result-card__cat">7/9 C スタンダード</div>
             </div>
             <span class="result-card__discipline result-card__discipline--std">STD</span>
           </header>
@@ -861,23 +894,39 @@
               <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
               <span class="result-card__no">#22</span>
             </li>
-            <li class="result-card__row">
-              <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
-              <span class="result-card__no">#13</span>
-            </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>3/6 C と合同審査
           </div>
         </article>
 
-        <!-- Item 12: 3/6 C ラテン / 7/9 C ラテン -->
+        <!-- Item 12-a: 3/6 C ラテン -->
         <article class="result-card" data-tags="children lat">
           <header class="result-card__header">
             <div>
               <div class="result-card__item-no">Item 12</div>
-              <div class="result-card__cat">3/6 C ラテン / 7/9 C ラテン</div>
+              <div class="result-card__cat">3/6 C ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
+              <span class="result-card__no">#13</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>7/9 C と合同審査
+          </div>
+        </article>
+
+        <!-- Item 12-b: 7/9 C ラテン -->
+        <article class="result-card" data-tags="children lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 12</div>
+              <div class="result-card__cat">7/9 C ラテン</div>
             </div>
             <span class="result-card__discipline result-card__discipline--lat">LAT</span>
           </header>
@@ -892,23 +941,39 @@
               <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
               <span class="result-card__no">#22</span>
             </li>
-            <li class="result-card__row">
-              <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">名越 蒼叡 / 山﨑 絃葉</span>
-              <span class="result-card__no">#13</span>
-            </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>3/6 C と合同審査
           </div>
         </article>
 
-        <!-- Item 02: 10/11 C スタンダード / 12/13 C スタンダード -->
+        <!-- Item 02-a: 10/11 C スタンダード -->
         <article class="result-card" data-tags="children std">
           <header class="result-card__header">
             <div>
               <div class="result-card__item-no">Item 02</div>
-              <div class="result-card__cat">10/11 C スタンダード / 12/13 C スタンダード</div>
+              <div class="result-card__cat">10/11 C スタンダード</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--std">STD</span>
+          </header>
+          <ol class="result-card__list">
+            <li class="result-card__row">
+              <span class="result-card__rank result-card__rank--1">1</span>
+              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__no">#32</span>
+            </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>12/13 C と合同審査
+          </div>
+        </article>
+
+        <!-- Item 02-b: 12/13 C スタンダード -->
+        <article class="result-card" data-tags="children std">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 02</div>
+              <div class="result-card__cat">12/13 C スタンダード</div>
             </div>
             <span class="result-card__discipline result-card__discipline--std">STD</span>
           </header>
@@ -918,23 +983,39 @@
               <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
               <span class="result-card__no">#59</span>
             </li>
+          </ol>
+          <div class="result-card__meta">
+            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>10/11 C と合同審査
+          </div>
+        </article>
+
+        <!-- Item 13-a: 10/11 C ラテン -->
+        <article class="result-card" data-tags="children lat">
+          <header class="result-card__header">
+            <div>
+              <div class="result-card__item-no">Item 13</div>
+              <div class="result-card__cat">10/11 C ラテン</div>
+            </div>
+            <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+          </header>
+          <ol class="result-card__list">
             <li class="result-card__row">
-              <span class="result-card__rank result-card__rank--2">2</span>
+              <span class="result-card__rank result-card__rank--1">1</span>
               <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
               <span class="result-card__no">#32</span>
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>12/13 C と合同審査
           </div>
         </article>
 
-        <!-- Item 13: 10/11 C ラテン / 12/13 C ラテン -->
+        <!-- Item 13-b: 12/13 C ラテン -->
         <article class="result-card" data-tags="children lat">
           <header class="result-card__header">
             <div>
               <div class="result-card__item-no">Item 13</div>
-              <div class="result-card__cat">10/11 C ラテン / 12/13 C ラテン</div>
+              <div class="result-card__cat">12/13 C ラテン</div>
             </div>
             <span class="result-card__discipline result-card__discipline--lat">LAT</span>
           </header>
@@ -944,14 +1025,9 @@
               <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
               <span class="result-card__no">#59</span>
             </li>
-            <li class="result-card__row">
-              <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
-              <span class="result-card__no">#32</span>
-            </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>種目：</strong>S / CCC / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希　｜　<strong>備考：</strong>10/11 C と合同審査
           </div>
         </article>
 
@@ -1006,22 +1082,23 @@
           </div>
         </div>
         <div class="footer-nav">
-          <h4>Pages</h4>
-          <a href="/">Home</a>
-          <a href="about.html">About</a>
-          <a href="events.html">Events</a>
-          <a href="rules.html">Rules</a>
-          <a href="contact.html">Contact</a>
+          <h4>サイトメニュー</h4>
+          <a href="/">ホーム</a>
+          <a href="about.html">団体について</a>
+          <a href="events.html">競技会</a>
+          <a href="results.html" class="active">大会結果</a>
+          <a href="rules.html">競技規則</a>
+          <a href="contact.html">お問い合わせ</a>
         </div>
         <div class="footer-nav">
-          <h4>Info</h4>
+          <h4>インフォメーション</h4>
           <a href="contact.html">お問い合わせ</a>
           <a href="privacy.html">プライバシーポリシー</a>
         </div>
         <div class="footer-hq">
-          <h4>IDSF Headquarters</h4>
+          <h4>IDSF本部</h4>
           <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__logo" aria-label="IDSF本部 公式サイトを開く（新しいタブ）">
-            <img src="images/logo-idsf.png" alt="International DanceSport Foundation" loading="lazy" width="220" height="40">
+            <img src="images/logo-idsf.png" alt="International DanceSport Foundation" loading="lazy" width="120" height="60">
           </a>
           <p class="footer-hq__desc">イタリアに本部を置く International DanceSport Foundation の公式サイト。</p>
           <a href="https://dancesportlive.info/nova/" target="_blank" rel="noopener noreferrer" class="footer-hq__link">
