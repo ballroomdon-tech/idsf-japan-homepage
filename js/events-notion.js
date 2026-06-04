@@ -60,6 +60,24 @@
     },
   ];
 
+  /* ========== 6/7 全日本選手権 大会資料 ==========
+     タイムテーブル・エントリー一覧を該当大会（2026-06-07）のポップアップに
+     「大会資料」として付与する。Notion・フォールバックいずれのデータ経路でも表示される。 */
+  const CHAMPIONSHIP_2026_06_07_DOCS = [
+    { label: 'タイムテーブル', type: '大会資料', url: '/events/japanese-championship-2026-timetable-en.pdf' },
+    { label: 'エントリー一覧', type: '大会資料', url: '/events/japanese-championship-2026-entry-en.pdf' },
+  ];
+  function withChampionshipDocs(events) {
+    (events || []).forEach(ev => {
+      if (!ev || (ev.dateStart || '').slice(0, 10) !== '2026-06-07') return;
+      ev.documents = (ev.documents || []).slice();
+      CHAMPIONSHIP_2026_06_07_DOCS.forEach(doc => {
+        if (!ev.documents.some(d => d && d.url === doc.url)) ev.documents.push(doc);
+      });
+    });
+    return events;
+  }
+
   /* ========== ユーティリティ ========== */
 
   function esc(s) {
@@ -476,6 +494,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const events = await res.json();
       if (!Array.isArray(events)) throw new Error('unexpected format');
+      withChampionshipDocs(events);
 
       const domestic = events.filter(e => DOMESTIC_CATEGORIES.includes(e.category));
       const intl     = events.filter(e => INTL_CATEGORIES.includes(e.category));
@@ -491,6 +510,7 @@
 
     } catch (err) {
       console.warn('API failed, using fallback:', err.message);
+      withChampionshipDocs(FALLBACK);
       const domestic = FALLBACK.filter(e => DOMESTIC_CATEGORIES.includes(e.category));
       const intl     = FALLBACK.filter(e => INTL_CATEGORIES.includes(e.category));
       renderGrid('events-domestic',      'loading-domestic',      domestic, '現在登録されている国内大会はありません。');
