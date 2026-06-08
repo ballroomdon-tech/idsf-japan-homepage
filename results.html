@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大会結果 | Star Cup 新宿 2026/5/10 | IDSF Japan</title>
-  <meta name="description" content="IDSF Japan 主催・公認大会の結果アーカイブ。Star Cup 新宿（2026年5月10日 新宿コズミックセンター）の全カテゴリー成績を掲載。スタンダード・ラテン各部門の上位入賞者を確認できます。">
-  <meta name="keywords" content="Star Cup 結果,社交ダンス 大会結果,ダンススポーツ 結果,IDSF Japan 結果,新宿 ダンス大会">
-  <meta property="og:title" content="大会結果 | Star Cup 新宿 2026/5/10 | IDSF Japan">
-  <meta property="og:description" content="Star Cup 新宿（2026年5月10日 新宿コズミックセンター）全カテゴリーの成績結果。">
+  <title>大会結果 | IDSF Japan</title>
+  <meta name="description" content="IDSF Japan 主催・公認大会の結果アーカイブ。全日本ダンススポーツ選手権（2026年6月7日）・Star Cup 新宿（2026年5月10日）の全カテゴリー成績を掲載。">
+  <meta name="keywords" content="全日本ダンススポーツ選手権 結果,Star Cup 結果,社交ダンス 大会結果,ダンススポーツ 結果,IDSF Japan 結果">
+  <meta property="og:title" content="大会結果 | IDSF Japan">
+  <meta property="og:description" content="IDSF Japan 主催・公認大会の結果アーカイブ。全日本ダンススポーツ選手権・Star Cup 新宿の全カテゴリー成績。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idsf-japan.com/results">
   <meta property="og:image" content="https://idsf-japan.com/images/og-image.jpg">
@@ -239,6 +239,33 @@
       font-weight: 600;
     }
 
+    /* 大会切り替えタブ */
+    .meet-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: var(--space-lg);
+      border-bottom: 2px solid var(--color-border-light);
+      padding-bottom: 0;
+    }
+    .meet-tab {
+      padding: 0.65rem 1.4rem;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-text-light);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .meet-tab:hover { color: var(--color-navy); }
+    .meet-tab.active {
+      color: var(--color-navy);
+      border-bottom-color: var(--color-gold);
+    }
+
     /* 空状態 */
     .results-empty {
       text-align: center;
@@ -319,6 +346,719 @@
   <section class="section">
     <div class="container">
 
+      <!-- 大会切り替えタブ -->
+      <div class="meet-tabs" role="tablist" aria-label="大会を選択">
+        <button class="meet-tab" data-meet="jc2026" role="tab" aria-selected="true">全日本選手権 2026/6/7</button>
+        <button class="meet-tab active" data-meet="starcup2026" role="tab" aria-selected="false">Star Cup 新宿 2026/5/10</button>
+      </div>
+
+      <!-- ========================================
+           全日本ダンススポーツ選手権 2026
+      ======================================== -->
+      <div id="meet-jc2026" class="meet-section" style="display:none;">
+
+        <div class="results-meet" data-reveal>
+          <span class="results-meet__label">Tournament Result</span>
+          <h2 class="results-meet__title">IDSF Open Japanese Championships 2026</h2>
+          <div class="results-meet__sub">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              June 7, 2026 (Sun)
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Tokyo Dome Hotel B1F "Tenkuu"
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              18 Events
+            </span>
+          </div>
+          <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="results/japanese-championships-2026-06-07-all.pdf" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: var(--color-navy); color: var(--color-white); border-radius: var(--border-radius); font-size: var(--fs-small); font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: all var(--transition-base);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              公式リザルトPDFを開く
+            </a>
+            <a href="results/japanese-championships-2026-06-07-all.pdf" download="IDSF_Japanese_Championships_2026_Results.pdf" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: var(--color-white); color: var(--color-navy); border: 1px solid var(--color-border); border-radius: var(--border-radius); font-size: var(--fs-small); font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: all var(--transition-base);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              ダウンロード
+            </a>
+          </div>
+        </div>
+
+        <!-- カテゴリーフィルタ (全日本) -->
+        <div class="results-filter" role="tablist" aria-label="Filter by category" id="filter-jc2026">
+          <button class="results-filter__btn active" data-filter="all">All</button>
+          <button class="results-filter__btn" data-filter="adult">Adult</button>
+          <button class="results-filter__btn" data-filter="master">Master</button>
+          <button class="results-filter__btn" data-filter="senior">Over</button>
+          <button class="results-filter__btn" data-filter="u21">U-21</button>
+          <button class="results-filter__btn" data-filter="u16">U-16</button>
+          <button class="results-filter__btn" data-filter="juvenile">Juvenile</button>
+          <button class="results-filter__btn" data-filter="std">Standard</button>
+          <button class="results-filter__btn" data-filter="lat">Latin</button>
+        </div>
+
+        <!-- アダルト -->
+        <h3 class="results-section-title">Adult</h3>
+        <div class="results-grid">
+
+          <!-- Item 08: International Adult Open Standard -->
+          <article class="result-card" data-tags="adult std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 08</div>
+                <div class="result-card__cat">International Adult Open Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Doheon Lee / Soyoung Hong</span>
+                <span class="result-card__no">#80</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Daigo Sugiyama / Misaki Suda</span>
+                <span class="result-card__no">#24</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Kazuki Kakizawa / Honatsu Kozutsumi</span>
+                <span class="result-card__no">#61</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Ryuichi Inami / Nanae Yasui</span>
+                <span class="result-card__no">#15</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Kentaro Okamoto / Nanako Sato</span>
+                <span class="result-card__no">#19</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">6</span>
+                <span class="result-card__couple">Syoichi Sakata / Natsuka Hoshiyama</span>
+                <span class="result-card__no">#18</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/08-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 08: National Adult Open Standard -->
+          <article class="result-card" data-tags="adult std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 08</div>
+                <div class="result-card__cat">National Adult Open Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Daigo Sugiyama / Misaki Suda</span>
+                <span class="result-card__no">#24</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Kazuki Kakizawa / Honatsu Kozutsumi</span>
+                <span class="result-card__no">#61</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Ryuichi Inami / Nanae Yasui</span>
+                <span class="result-card__no">#15</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Kentaro Okamoto / Nanako Sato</span>
+                <span class="result-card__no">#19</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Syoichi Sakata / Natsuka Hoshiyama</span>
+                <span class="result-card__no">#18</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/08-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 17: Adult Open Latin (Final) -->
+          <article class="result-card" data-tags="adult lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 17</div>
+                <div class="result-card__cat">Adult Open Latin</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Daigo Sugiyama / Misaki Suda</span>
+                <span class="result-card__no">#24</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Kazuki Kakizawa / Honatsu Kozutsumi</span>
+                <span class="result-card__no">#61</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Tokoglu Artun / Eri Tsuchiya</span>
+                <span class="result-card__no">#76</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Masahiro Kawahara / Kana Kawahara</span>
+                <span class="result-card__no">#47</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Shintaro Nakamura / Ayane Hayashi</span>
+                <span class="result-card__no">#54</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">6</span>
+                <span class="result-card__couple">Kentaro Okamoto / Nanako Sato</span>
+                <span class="result-card__no">#19</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">7</span>
+                <span class="result-card__couple">Koichi Obara / Kana Katsumata</span>
+                <span class="result-card__no">#30</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> S / CCC / R / P / J　｜　<a href="results/japanese-championships-2026-06-07/17-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 12: D Class Standard Waltz -->
+          <article class="result-card" data-tags="adult std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 12</div>
+                <div class="result-card__cat">D Class Standard Waltz</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Makitaro Kijima / Eriko Kijima</span>
+                <span class="result-card__no">#78</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tatsumi Hasegawa / Reiko Suzuki</span>
+                <span class="result-card__no">#65</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dance:</strong> Waltz　｜　<a href="results/japanese-championships-2026-06-07/12-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 13: D Class Standard Tango -->
+          <article class="result-card" data-tags="adult std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 13</div>
+                <div class="result-card__cat">D Class Standard Tango</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Makitaro Kijima / Eriko Kijima</span>
+                <span class="result-card__no">#78</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tatsumi Hasegawa / Reiko Suzuki</span>
+                <span class="result-card__no">#65</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dance:</strong> Tango　｜　<a href="results/japanese-championships-2026-06-07/13-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 04: D Class Latin Cha Cha Cha -->
+          <article class="result-card" data-tags="adult lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 04</div>
+                <div class="result-card__cat">D Class Latin Cha Cha Cha</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Makitaro Kijima / Eriko Kijima</span>
+                <span class="result-card__no">#78</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tatsumi Hasegawa / Reiko Suzuki</span>
+                <span class="result-card__no">#65</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dance:</strong> Cha Cha Cha　｜　<a href="results/japanese-championships-2026-06-07/04-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 05: D Class Latin Rumba -->
+          <article class="result-card" data-tags="adult lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 05</div>
+                <div class="result-card__cat">D Class Latin Rumba</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Makitaro Kijima / Eriko Kijima</span>
+                <span class="result-card__no">#78</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tatsumi Hasegawa / Reiko Suzuki</span>
+                <span class="result-card__no">#65</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dance:</strong> Rumba　｜　<a href="results/japanese-championships-2026-06-07/05-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- マスター -->
+        <h3 class="results-section-title">Master</h3>
+        <div class="results-grid">
+
+          <!-- Item 18: Adult Master Standard -->
+          <article class="result-card" data-tags="master std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 18</div>
+                <div class="result-card__cat">Adult Master Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Takeshi Yamamoto / Tomomi Kijima</span>
+                <span class="result-card__no">#1</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tadahisa Nohara / Akira Seino</span>
+                <span class="result-card__no">#6</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/18-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 09: Adult Master Latin -->
+          <article class="result-card" data-tags="master lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 09</div>
+                <div class="result-card__cat">Adult Master Latin</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Takeshi Yamamoto / Tomomi Kijima</span>
+                <span class="result-card__no">#1</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Tadahisa Nohara / Akira Seino</span>
+                <span class="result-card__no">#6</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> S / CCC / R / P / J　｜　<a href="results/japanese-championships-2026-06-07/09-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- オーバー -->
+        <h3 class="results-section-title">Over</h3>
+        <div class="results-grid">
+
+          <!-- Item 06: Over 35/45 Standard -->
+          <article class="result-card" data-tags="senior std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 06</div>
+                <div class="result-card__cat">Over 35/45 Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryuichi Inami / Nanae Yasui</span>
+                <span class="result-card__no">#15</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Syoichi Sakata / Natsuka Hoshiyama</span>
+                <span class="result-card__no">#18</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Takuichi Nishimura / Yukiko Watanabe</span>
+                <span class="result-card__no">#32</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Kenichiro Yomura / Reiko Adachi</span>
+                <span class="result-card__no">#41</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/06-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 15: Over 35/45/55 Latin -->
+          <article class="result-card" data-tags="senior lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 15</div>
+                <div class="result-card__cat">Over 35/45/55 Latin</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Masahiro Kawahara / Kana Kawahara</span>
+                <span class="result-card__no">#47</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Takuichi Nishimura / Yukiko Watanabe</span>
+                <span class="result-card__no">#32</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Ryuichi Inami / Nanae Yasui</span>
+                <span class="result-card__no">#15</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Kyoji Yamada / Izumi Shiguma</span>
+                <span class="result-card__no">#52</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> S / CCC / R / P / J　｜　<a href="results/japanese-championships-2026-06-07/15-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 03: Over 55/65 Standard -->
+          <article class="result-card" data-tags="senior std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 03</div>
+                <div class="result-card__cat">Over 55/65 Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Takuichi Nishimura / Yukiko Watanabe</span>
+                <span class="result-card__no">#32</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Kenichiro Yomura / Reiko Adachi</span>
+                <span class="result-card__no">#41</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Kyoji Yamada / Izumi Shiguma</span>
+                <span class="result-card__no">#52</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/03-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- U-21 -->
+        <h3 class="results-section-title">U-21</h3>
+        <div class="results-grid">
+
+          <!-- Item 10: Under 21 Standard -->
+          <article class="result-card" data-tags="u21 std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 10</div>
+                <div class="result-card__cat">Under 21 Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryunosuke Takai / Haruno Takeshita</span>
+                <span class="result-card__no">#43</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Ryota Sato / Yuika Furuya</span>
+                <span class="result-card__no">#56</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / SF / Q　｜　<a href="results/japanese-championships-2026-06-07/10-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- U-16 -->
+        <h3 class="results-section-title">U-16</h3>
+        <div class="results-grid">
+
+          <!-- Item 16: Under 16 Standard -->
+          <article class="result-card" data-tags="u16 std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 16</div>
+                <div class="result-card__cat">Under 16 Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryunosuke Takai / Haruno Takeshita</span>
+                <span class="result-card__no">#43</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
+                <span class="result-card__no">#36</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
+                <span class="result-card__no">#11</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
+                <span class="result-card__no">#27</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
+                <span class="result-card__no">#21</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / Q　｜　<a href="results/japanese-championships-2026-06-07/16-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 07: Under 16 Latin -->
+          <article class="result-card" data-tags="u16 lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 07</div>
+                <div class="result-card__cat">Under 16 Latin</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryunosuke Takai / Haruno Takeshita</span>
+                <span class="result-card__no">#43</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
+                <span class="result-card__no">#11</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
+                <span class="result-card__no">#36</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
+                <span class="result-card__no">#27</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
+                <span class="result-card__no">#21</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> S / CCC / R / P / J　｜　<a href="results/japanese-championships-2026-06-07/07-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ジュブナイル -->
+        <h3 class="results-section-title">Juvenile</h3>
+        <div class="results-grid">
+
+          <!-- Item 14: Juvenile Standard -->
+          <article class="result-card" data-tags="juvenile std" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 14</div>
+                <div class="result-card__cat">Juvenile Standard</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--std">STD</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryunosuke Takai / Haruno Takeshita</span>
+                <span class="result-card__no">#43</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
+                <span class="result-card__no">#11</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
+                <span class="result-card__no">#27</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Riku Sato / Yumi Shiratori</span>
+                <span class="result-card__no">#38</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Kaede Takeyama / Risa Hirano</span>
+                <span class="result-card__no">#45</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">6</span>
+                <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
+                <span class="result-card__no">#21</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">7</span>
+                <span class="result-card__couple">Kanato Yamazaki / Akari Ishibashi</span>
+                <span class="result-card__no">#63</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> W / T / VW / Q　｜　<a href="results/japanese-championships-2026-06-07/14-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+          <!-- Item 02: Juvenile Latin -->
+          <article class="result-card" data-tags="juvenile lat" data-meet="jc2026">
+            <header class="result-card__header">
+              <div>
+                <div class="result-card__item-no">Item 02</div>
+                <div class="result-card__cat">Juvenile Latin</div>
+              </div>
+              <span class="result-card__discipline result-card__discipline--lat">LAT</span>
+            </header>
+            <ol class="result-card__list">
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--1">1</span>
+                <span class="result-card__couple">Ryunosuke Takai / Haruno Takeshita</span>
+                <span class="result-card__no">#43</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--2">2</span>
+                <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
+                <span class="result-card__no">#11</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank result-card__rank--3">3</span>
+                <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
+                <span class="result-card__no">#27</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">4</span>
+                <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
+                <span class="result-card__no">#21</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">5</span>
+                <span class="result-card__couple">Kaede Takeyama / Risa Hirano</span>
+                <span class="result-card__no">#45</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">6</span>
+                <span class="result-card__couple">Riku Sato / Yumi Shiratori</span>
+                <span class="result-card__no">#38</span>
+              </li>
+              <li class="result-card__row">
+                <span class="result-card__rank">7</span>
+                <span class="result-card__couple">Kanato Yamazaki / Akari Ishibashi</span>
+                <span class="result-card__no">#63</span>
+              </li>
+            </ol>
+            <div class="result-card__meta">
+              <strong>Dances:</strong> S / CCC / R / J　｜　<a href="results/japanese-championships-2026-06-07/02-d.html" target="_blank" rel="noopener" style="color:var(--color-gold-dark);font-weight:600;">Full Scrutiny</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- 補足説明 (全日本) -->
+        <div style="margin-top: var(--space-xl); padding: var(--space-md); background: var(--color-bg-subtle); border-radius: var(--border-radius); font-size: var(--fs-small); color: var(--color-text-light); line-height: 1.9;">
+          <p style="margin: 0;">
+            <strong style="color: var(--color-text-strong);">Notes</strong><br>
+            Results are published as official records by IDSF Japan based on competition rankings.<br>
+            Scrutineer / Chairman: Stefan Green &nbsp;|&nbsp; System: DanceScore / DanceSportLive<br>
+            Couple names are based on entry information. For any corrections, please <a href="contact.html" style="color: var(--color-gold-dark); font-weight: 600;">contact us</a>.
+          </p>
+        </div>
+
+      </div><!-- /meet-jc2026 -->
+
+      <!-- ========================================
+           Star Cup 新宿 2026
+      ======================================== -->
+      <div id="meet-starcup2026" class="meet-section">
+
       <!-- 大会タイトル -->
       <div class="results-meet" data-reveal>
         <span class="results-meet__label">Tournament Result</span>
@@ -350,21 +1090,21 @@
       </div>
 
       <!-- カテゴリーフィルタ -->
-      <div class="results-filter" role="tablist" aria-label="カテゴリー絞り込み">
-        <button class="results-filter__btn active" data-filter="all">すべて</button>
-        <button class="results-filter__btn" data-filter="adult">アダルト</button>
+      <div class="results-filter" role="tablist" aria-label="Filter by category">
+        <button class="results-filter__btn active" data-filter="all">All</button>
+        <button class="results-filter__btn" data-filter="adult">Adult</button>
         <button class="results-filter__btn" data-filter="senior">シニア</button>
         <button class="results-filter__btn" data-filter="u16">U-16</button>
-        <button class="results-filter__btn" data-filter="juvenile">ジュブナイル</button>
+        <button class="results-filter__btn" data-filter="juvenile">Juvenile</button>
         <button class="results-filter__btn" data-filter="children">チルドレン</button>
-        <button class="results-filter__btn" data-filter="std">スタンダード</button>
-        <button class="results-filter__btn" data-filter="lat">ラテン</button>
+        <button class="results-filter__btn" data-filter="std">Standard</button>
+        <button class="results-filter__btn" data-filter="lat">Latin</button>
       </div>
 
       <!-- ========================================
            アダルト
       ======================================== -->
-      <h3 class="results-section-title">アダルト</h3>
+      <h3 class="results-section-title">Adult</h3>
       <div class="results-grid">
 
         <!-- Item 20: アダルトオープン スタンダード -->
@@ -379,7 +1119,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">杉山 大悟 / 須田 美咲</span>
+              <span class="result-card__couple">Daigo Sugiyama / Misaki Suda</span>
               <span class="result-card__no">#42</span>
             </li>
             <li class="result-card__row">
@@ -399,12 +1139,12 @@
             </li>
             <li class="result-card__row">
               <span class="result-card__rank">5</span>
-              <span class="result-card__couple">トコール アルトゥン / 土屋 恵梨</span>
+              <span class="result-card__couple">Tokoglu Artun / Eri Tsuchiya</span>
               <span class="result-card__no">#48</span>
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+            <strong>Dances:</strong> W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -420,7 +1160,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">杉山 大悟 / 須田 美咲</span>
+              <span class="result-card__couple">Daigo Sugiyama / Misaki Suda</span>
               <span class="result-card__no">#42</span>
             </li>
             <li class="result-card__row">
@@ -430,7 +1170,7 @@
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">トコール アルトゥン / 土屋 恵梨</span>
+              <span class="result-card__couple">Tokoglu Artun / Eri Tsuchiya</span>
               <span class="result-card__no">#48</span>
             </li>
             <li class="result-card__row">
@@ -450,7 +1190,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+            <strong>Dances:</strong> S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
           </div>
         </article>
 
@@ -523,7 +1263,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>Waltz（単科）　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+            <strong>Dance:</strong> Waltz　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -554,7 +1294,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>Tango（単科）　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
+            <strong>Dance:</strong> Tango　｜　<strong>審査員：</strong>木嶋友美・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -585,7 +1325,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>Cha Cha Cha（単科）　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+            <strong>Dance:</strong> Cha Cha Cha　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
           </div>
         </article>
 
@@ -616,7 +1356,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>Rumba（単科）　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
+            <strong>Dance:</strong> Rumba　｜　<strong>審査員：</strong>木嶋友美・土屋純一・篠田有希
           </div>
         </article>
 
@@ -655,7 +1395,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
+            <strong>Dances:</strong> W / T / VW / SF / Q　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
           </div>
         </article>
 
@@ -691,7 +1431,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
+            <strong>Dances:</strong> S / CCC / R / P / J　｜　<strong>審査員：</strong>木嶋友美・土屋純一・塩田彩子
           </div>
         </article>
 
@@ -715,22 +1455,22 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
               <span class="result-card__no">#59</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / T / VW / Q　｜<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>Dances:</strong> W / T / VW / Q　｜<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -746,22 +1486,22 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
               <span class="result-card__no">#59</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / R / P / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>Dances:</strong> S / CCC / R / P / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -770,7 +1510,7 @@
       <!-- ========================================
            ジュブナイル
       ======================================== -->
-      <h3 class="results-section-title">ジュブナイル</h3>
+      <h3 class="results-section-title">Juvenile</h3>
       <div class="results-grid">
 
         <!-- Item 08: ジュブナイルオープン スタンダード -->
@@ -785,17 +1525,17 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
               <span class="result-card__no">#22</span>
             </li>
             <li class="result-card__row">
@@ -805,7 +1545,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>W / T / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>Dances:</strong> W / T / VW / Q　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -821,17 +1561,17 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--3">3</span>
-              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
               <span class="result-card__no">#22</span>
             </li>
             <li class="result-card__row">
@@ -841,7 +1581,7 @@
             </li>
           </ol>
           <div class="result-card__meta">
-            <strong>種目：</strong>S / CCC / R / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
+            <strong>Dances:</strong> S / CCC / R / J　｜　<strong>審査員：</strong>土屋純一・塩田彩子・篠田有希
           </div>
         </article>
 
@@ -886,12 +1626,12 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
               <span class="result-card__no">#22</span>
             </li>
           </ol>
@@ -933,12 +1673,12 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 楓澄 / 山本 彩七</span>
+              <span class="result-card__couple">Futo Hasegawa / Sana Yamamoto</span>
               <span class="result-card__no">#34</span>
             </li>
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--2">2</span>
-              <span class="result-card__couple">長谷川 湊澄 / 尾原 有里彩</span>
+              <span class="result-card__couple">Minato Hasegawa / Arisa Ohara</span>
               <span class="result-card__no">#22</span>
             </li>
           </ol>
@@ -959,7 +1699,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
           </ol>
@@ -980,7 +1720,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
               <span class="result-card__no">#59</span>
             </li>
           </ol>
@@ -1001,7 +1741,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">長谷川 葵澄 / チェ アヒ</span>
+              <span class="result-card__couple">Aoto Hasegawa / Choi Ahhee</span>
               <span class="result-card__no">#32</span>
             </li>
           </ol>
@@ -1022,7 +1762,7 @@
           <ol class="result-card__list">
             <li class="result-card__row">
               <span class="result-card__rank result-card__rank--1">1</span>
-              <span class="result-card__couple">山口 蒼真 / 喜古 彩</span>
+              <span class="result-card__couple">Soma Yamaguchi / Sayaka Kiko</span>
               <span class="result-card__no">#59</span>
             </li>
           </ol>
@@ -1033,20 +1773,22 @@
 
       </div>
 
-      <!-- 結果なし表示 -->
-      <div class="results-empty" id="results-empty" hidden>
+      <!-- 結果なし表示 (Star Cup) -->
+      <div class="results-empty" id="results-empty-starcup" hidden>
         <p>該当するカテゴリーの結果がありません。</p>
       </div>
 
-      <!-- 補足説明 -->
+      <!-- 補足説明 (Star Cup) -->
       <div style="margin-top: var(--space-xl); padding: var(--space-md); background: var(--color-bg-subtle); border-radius: var(--border-radius); font-size: var(--fs-small); color: var(--color-text-light); line-height: 1.9;">
         <p style="margin: 0;">
-          <strong style="color: var(--color-text-strong);">記載について</strong><br>
-          結果は当日の競技順位に基づき、IDSF Japan が公式記録として掲載しています。<br>
+          <strong style="color: var(--color-text-strong);">Notes</strong><br>
+          Results are published as official records by IDSF Japan based on competition rankings.<br>
           スクルーティニア / チェアマン：Stefan Green<br>
-          記載内容に誤りがある場合は <a href="contact.html" style="color: var(--color-gold-dark); font-weight: 600;">お問い合わせ</a> よりご連絡ください。
+          記載内容に誤りがある場合は <a href="contact.html" style="color: var(--color-gold-dark); font-weight: 600;">contact us</a>.
         </p>
       </div>
+
+      </div><!-- /meet-starcup2026 -->
 
     </div>
   </section>
@@ -1056,7 +1798,7 @@
     <div class="container text-center" data-reveal>
       <h2>次回大会のお知らせ</h2>
       <p style="max-width:600px;margin:var(--space-sm) auto var(--space-md);color:var(--color-text-on-dark-muted);">
-        2026年6月7日（日）開催の全日本ダンススポーツ選手権、続く Italian Open 2026 など、IDSF Japan が主催・サポートする大会情報は Events ページからご確認ください。
+        Italian Open 2026（6月開催予定）など、IDSF Japan が主催・サポートする次回大会の情報は Events ページからご確認ください。
       </p>
       <a href="events.html" class="btn btn--outline-white">大会スケジュールを見る</a>
     </div>
@@ -1116,42 +1858,70 @@
 
   <script src="js/main.js"></script>
   <script>
-    // カテゴリーフィルタリング
     (function() {
-      const buttons = document.querySelectorAll('.results-filter__btn');
-      const cards = document.querySelectorAll('.result-card');
-      const sections = document.querySelectorAll('.results-section-title, .results-grid');
-      const empty = document.getElementById('results-empty');
+      // ========== 大会タブ切り替え ==========
+      const meetTabs = document.querySelectorAll('.meet-tab');
+      const meetSections = document.querySelectorAll('.meet-section');
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filter = btn.dataset.filter;
+      // 初期状態: 全日本を表示（最新大会を最初に）
+      document.getElementById('meet-jc2026').style.display = '';
+      document.getElementById('meet-starcup2026').style.display = 'none';
+      // タブのactive状態を修正
+      meetTabs.forEach(t => t.classList.remove('active'));
+      document.querySelector('[data-meet="jc2026"]').classList.add('active');
 
-          buttons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          let visibleCount = 0;
-          cards.forEach(card => {
-            const tags = (card.dataset.tags || '').split(' ');
-            const show = filter === 'all' || tags.includes(filter);
-            card.style.display = show ? '' : 'none';
-            if (show) visibleCount++;
+      meetTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.meet;
+          meetTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          meetSections.forEach(sec => {
+            sec.style.display = sec.id === 'meet-' + target ? '' : 'none';
           });
-
-          // セクション見出しを、配下に表示カードがなければ隠す
-          document.querySelectorAll('.results-grid').forEach(grid => {
-            const visibleInGrid = Array.from(grid.querySelectorAll('.result-card'))
-              .some(c => c.style.display !== 'none');
-            const prevTitle = grid.previousElementSibling;
-            if (prevTitle && prevTitle.classList.contains('results-section-title')) {
-              prevTitle.style.display = visibleInGrid ? '' : 'none';
-            }
-            grid.style.display = visibleInGrid ? '' : 'none';
+          // フィルタをリセット
+          document.querySelectorAll('.results-filter__btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.filter === 'all');
           });
-
-          empty.hidden = visibleCount > 0;
+          document.querySelectorAll('.result-card').forEach(c => c.style.display = '');
+          document.querySelectorAll('.results-grid').forEach(g => g.style.display = '');
+          document.querySelectorAll('.results-section-title').forEach(t => t.style.display = '');
         });
       });
+
+      // ========== カテゴリーフィルタ ==========
+      function applyFilter(filterBtns, meetId) {
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const section = document.getElementById('meet-' + meetId);
+            const cards = section.querySelectorAll('.result-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+              const tags = (card.dataset.tags || '').split(' ');
+              const show = filter === 'all' || tags.includes(filter);
+              card.style.display = show ? '' : 'none';
+              if (show) visibleCount++;
+            });
+
+            section.querySelectorAll('.results-grid').forEach(grid => {
+              const visible = Array.from(grid.querySelectorAll('.result-card'))
+                .some(c => c.style.display !== 'none');
+              const prev = grid.previousElementSibling;
+              if (prev && prev.classList.contains('results-section-title')) {
+                prev.style.display = visible ? '' : 'none';
+              }
+              grid.style.display = visible ? '' : 'none';
+            });
+          });
+        });
+      }
+
+      applyFilter(document.querySelectorAll('#meet-jc2026 .results-filter__btn'), 'jc2026');
+      applyFilter(document.querySelectorAll('#meet-starcup2026 .results-filter__btn'), 'starcup2026');
     })();
   </script>
 </body>
