@@ -285,6 +285,16 @@
       display: inline-block;
     }
     .results-section-title:first-of-type { margin-top: 0; }
+
+    /* 安全策: 大会セクション内のコンテンツは reveal アニメに依存せず常に表示
+       （display:none 中は IntersectionObserver が発火しないため、
+        タブ切替後に opacity:0 のまま残るのを防ぐ） */
+    .meet-section [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    /* JS無効時でも両大会の結果を読めるようにする */
+    .no-js .meet-section { display: block !important; }
   </style>
   <script type="application/ld+json">
   {
@@ -357,7 +367,7 @@
       ======================================== -->
       <div id="meet-jc2026" class="meet-section">
 
-        <div class="results-meet" data-reveal>
+        <div class="results-meet">
           <span class="results-meet__label">Tournament Result</span>
           <h2 class="results-meet__title">IDSF Open Japanese Championships 2026</h2>
           <div class="results-meet__sub">
@@ -1035,7 +1045,7 @@
       <div id="meet-starcup2026" class="meet-section" style="display:none;">
 
       <!-- 大会タイトル -->
-      <div class="results-meet" data-reveal>
+      <div class="results-meet">
         <span class="results-meet__label">Tournament Result</span>
         <h2 class="results-meet__title">Star Cup 新宿 2026</h2>
         <div class="results-meet__sub">
@@ -1831,12 +1841,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20260608"></script>
   <script>
     (function() {
       // ========== 大会タブ切り替え ==========
       const meetTabs = document.querySelectorAll('.meet-tab');
       const meetSections = document.querySelectorAll('.meet-section');
+      if (!meetTabs.length || !meetSections.length) return;
 
       // 非表示セクション内の data-reveal は IntersectionObserver が発火しないため、
       // 表示に切り替えたタイミングで強制的に .revealed を付与する。
