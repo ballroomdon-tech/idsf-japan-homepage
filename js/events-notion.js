@@ -120,6 +120,18 @@
     return '';
   }
 
+  /**
+   * 大会が「終了済み」かどうかを開催日基準で判定する。
+   * 複数日開催の場合は終了日（dateEnd）を基準にし、開催当日は「開催予定」扱い。
+   * 日付未定（dateStartなし）の場合は開催予定として扱う。
+   */
+  function isPast(ev) {
+    const ref = ev.dateEnd || ev.dateStart;
+    if (!ref) return false;
+    const end = new Date(ref + 'T23:59:59');
+    return end.getTime() < Date.now();
+  }
+
   function modalBadgeClass(category) {
     if (category === '全日本選手権') return 'ev-modal__badge--championship';
     if (category === '国際大会' || category === 'CSIT') return 'ev-modal__badge--international';
@@ -130,6 +142,12 @@
 
   function cardHTML(ev) {
     const dateStr = fmtDate(ev.dateStart, ev.dateEnd);
+    const past    = isPast(ev);
+
+    // 終了バッジ（画像左上、カテゴリの下）
+    const endedBadge = past
+      ? `<span class="ev-card__ended">終了</span>`
+      : '';
 
     // 地域バッジ（画像右下）
     const regionBadge = ev.region
@@ -145,6 +163,7 @@
       ? `<div class="ev-card__img">
            <img src="${esc(ev.flyerImage)}" alt="${esc(ev.title)} フライヤー" loading="lazy">
            <span class="ev-card__badge ${badgeClass(ev.category)}">${esc(ev.category)}</span>
+           ${endedBadge}
            ${regionBadge}
          </div>`
       : `<div class="ev-card__img">
@@ -156,6 +175,7 @@
              <span>FLYER COMING SOON</span>
            </div>
            <span class="ev-card__badge ${badgeClass(ev.category)}">${esc(ev.category)}</span>
+           ${endedBadge}
            ${regionBadge}
          </div>`;
 
@@ -173,8 +193,8 @@
       : '';
 
     return `
-    <article class="ev-card" tabindex="0" role="button"
-      aria-label="${esc(ev.title)}の詳細を見る"
+    <article class="ev-card${past ? ' ev-card--past' : ''}" tabindex="0" role="button"
+      aria-label="${esc(ev.title)}の詳細を見る${past ? '（終了した大会）' : ''}"
       data-event-id="${esc(ev.id)}">
       ${imgArea}
       <div class="ev-card__body">
@@ -193,36 +213,19 @@
 
   /* ========== グリッド描画 ========== */
 
-  function renderGrid(containerId, loadingId, events, emptyMsg) {
-    const container = document.getElementById(containerId);
-    const loading   = document.getElementById(loadingId);
-    if (!container) return;
-    if (loading) loading.remove();
-
-    if (!events || events.length === 0) {
-      container.innerHTML = `
-        <div class="events-status">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          <p>${emptyMsg}</p>
-        </div>`;
-      return;
-    }
-
+  /**
+   * 大会カードのグリッドDOMを生成し、クリック/キーボードでモーダルを開く
+   * イベントを束ねて返す。renderGrid から開催予定・過去の両セクションで使う。
+   */
+  function buildGrid(events) {
     const grid = document.createElement('div');
     grid.className = 'events-grid';
     grid.innerHTML = events.map(cardHTML).join('');
-    container.innerHTML = '';
-    container.appendChild(grid);
 
-    // カードクリック → モーダル
     grid.querySelectorAll('.ev-card').forEach(card => {
       const id = card.dataset.eventId;
       const ev = events.find(e => e.id === id);
       if (!ev) return;
-
       const open = () => openModal(ev);
       card.addEventListener('click', open);
       card.addEventListener('keydown', e => {
@@ -230,9 +233,95 @@
       });
     });
 
-    // reveal アニメーション
-    if (window.revealObserver) {
-      grid.querySelectorAll('.ev-card').forEach(el => window.revealObserver.observe(el));
+    return grid;
+  }
+
+  function emptyStateHTML(msg) {
+    return `
+      <div class="events-status">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <p>${msg}</p>
+      </div>`;
+  }
+
+  function renderGrid(containerId, loadingId, events, emptyMsg) {
+    const container = document.getElementById(containerId);
+    const loading   = document.getElementById(loadingId);
+    if (!container) return;
+    if (loading) loading.remove();
+    container.innerHTML = '';
+
+    if (!events || events.length === 0) {
+      container.innerHTML = emptyStateHTML(emptyMsg);
+      return;
+    }
+
+    // 開催予定（日付の早い順）／過去（日付の新しい順）に振り分け
+    const dateVal = ev => (ev.dateStart || ev.dateEnd || '9999-12-31');
+    const upcoming = events.filter(ev => !isPast(ev))
+      .sort((a, b) => dateVal(a).localeCompare(dateVal(b)));
+    const past = events.filter(isPast)
+      .sort((a, b) => dateVal(b).localeCompare(dateVal(a)));
+
+    // --- 開催予定セクション ---
+    const upHeading = document.createElement('h2');
+    upHeading.className = 'events-section-heading';
+    upHeading.innerHTML = `開催予定の大会 <span class="events-section-count">${upcoming.length}</span>`;
+    container.appendChild(upHeading);
+
+    if (upcoming.length) {
+      const upGrid = buildGrid(upcoming);
+      container.appendChild(upGrid);
+      if (window.revealObserver) {
+        upGrid.querySelectorAll('.ev-card').forEach(el => window.revealObserver.observe(el));
+      }
+    } else {
+      const note = document.createElement('div');
+      note.innerHTML = emptyStateHTML('現在、開催予定の大会はありません。新しい大会が決まり次第お知らせします。');
+      container.appendChild(note.firstElementChild);
+    }
+
+    // --- 過去の大会セクション（折りたたみ）---
+    if (past.length) {
+      const wrap = document.createElement('div');
+      wrap.className = 'events-past';
+
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'events-past-toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.innerHTML = `
+        <span class="events-past-toggle__label">過去の大会を表示</span>
+        <span class="events-past-toggle__count">${past.length}</span>
+        <svg class="events-past-toggle__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+      const panel = document.createElement('div');
+      panel.className = 'events-past-panel';
+      panel.hidden = true;
+
+      let built = false;
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        if (!open && !built) {
+          const pastGrid = buildGrid(past);
+          panel.appendChild(pastGrid);
+          if (window.revealObserver) {
+            pastGrid.querySelectorAll('.ev-card').forEach(el => window.revealObserver.observe(el));
+          }
+          built = true;
+        }
+        toggle.setAttribute('aria-expanded', String(!open));
+        panel.hidden = open;
+        toggle.querySelector('.events-past-toggle__label').textContent =
+          open ? '過去の大会を表示' : '過去の大会を隠す';
+      });
+
+      wrap.appendChild(toggle);
+      wrap.appendChild(panel);
+      container.appendChild(wrap);
     }
   }
 

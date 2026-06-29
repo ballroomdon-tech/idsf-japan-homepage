@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026年 社交ダンス・ダンススポーツ大会スケジュール | Star Cup・全日本選手権・Italian Open | IDSF Japan</title>
-  <meta name="description" content="2026年の社交ダンス・ダンススポーツ大会情報。Star Cup 新宿（5/10）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026（6/15-21）など、IDSF Japan 主催・サポートの国内・国際大会スケジュールを随時更新。シラバス・要項も確認可能。">
+  <title>2026年 社交ダンス・ダンススポーツ大会スケジュール | STAR CUP・全日本選手権・Italian Open | IDSF Japan</title>
+  <meta name="description" content="2026年の社交ダンス・ダンススポーツ大会情報。第6回 STAR CUP 新宿（9/22）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など、IDSF Japan 主催・サポートの国内・国際大会スケジュールを随時更新。シラバス・要項も確認可能。">
   <meta name="keywords" content="社交ダンス 大会,ダンススポーツ 大会,Star Cup 新宿,全日本ダンススポーツ選手権,Italian Open 2026,IDSF Japan,競技ダンス 大会 2026,東京 社交ダンス 大会">
   <meta property="og:title" content="大会・イベント情報 | IDSF Japan — Star Cup・全日本選手権・国際大会">
-  <meta property="og:description" content="Star Cup 新宿（5/10）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など2026年大会スケジュール。">
+  <meta property="og:description" content="第6回 STAR CUP 新宿（9/22）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など2026年大会スケジュール。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idsf-japan.com/events">
   <meta property="og:image" content="https://idsf-japan.com/images/og-image.jpg">
@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="IDSF Japan">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="大会・イベント情報 | IDSF Japan">
-  <meta name="twitter:description" content="Star Cup 新宿・全日本選手権・Italian Open 2026など2026年大会スケジュール。">
+  <meta name="twitter:description" content="第6回 STAR CUP 新宿（9/22）・全日本選手権・Italian Open 2026など2026年大会スケジュール。">
   <meta name="twitter:image" content="https://idsf-japan.com/images/og-image.jpg">
   <link rel="canonical" href="https://idsf-japan.com/events">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -72,6 +72,108 @@
     @media (max-width: 560px) {
       .events-grid { grid-template-columns: 1fr; gap: 1.25rem; }
     }
+
+    /* --- セクション見出し（開催予定 / 過去の大会）--- */
+    .events-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      letter-spacing: 0.04em;
+      margin: 0 0 var(--space-md);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--color-border-light);
+    }
+    .events-section-heading::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      background: var(--color-gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .events-section-count {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-gold-dark);
+      background: var(--color-bg-subtle);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+      line-height: 1.6;
+    }
+
+    /* --- 過去の大会：折りたたみ --- */
+    .events-past {
+      margin-top: var(--space-xl);
+    }
+    .events-past-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius);
+      color: var(--color-text-strong);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .events-past-toggle:hover {
+      border-color: var(--color-gold);
+      background: #fffdf7;
+    }
+    .events-past-toggle:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 2px;
+    }
+    .events-past-toggle__count {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      color: var(--color-gold-dark);
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: 999px;
+      padding: 0.05rem 0.55rem;
+      line-height: 1.7;
+    }
+    .events-past-toggle__chevron {
+      margin-left: auto;
+      transition: transform var(--transition-fast);
+      color: var(--color-text-light);
+    }
+    .events-past-toggle[aria-expanded="true"] .events-past-toggle__chevron {
+      transform: rotate(180deg);
+    }
+    .events-past-panel {
+      margin-top: var(--space-md);
+    }
+    .events-past-panel[hidden] { display: none; }
+
+    /* --- 終了バッジ（カード画像上）--- */
+    .ev-card__ended {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 2px;
+      background: rgba(28, 28, 40, 0.82);
+      color: var(--color-white);
+      line-height: 1.6;
+      z-index: 2;
+    }
+    /* 過去カードは少し控えめに */
+    .ev-card--past .ev-card__img img { filter: grayscale(0.35); opacity: 0.92; }
+    .ev-card--past:hover .ev-card__img img { filter: grayscale(0); opacity: 1; }
 
     /* --- 個別カード --- */
     .ev-card {
@@ -706,6 +808,42 @@
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "sport": "Dancesport"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "第6回 STAR CUP（新宿）",
+      "startDate": "2026-09-22",
+      "endDate": "2026-09-22",
+      "location": {
+        "@type": "Place",
+        "name": "新宿コズミックセンター 小体育室",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "大久保3-1-2",
+          "addressLocality": "新宿区",
+          "addressRegion": "東京都",
+          "addressCountry": "JP"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "IDSF Japan",
+        "url": "https://idsf-japan.com"
+      },
+      "description": "IDSF DANCESPORT OPEN COMPETITION IN TOKYO。スタンダード・ラテン各種目、アダルトからシニア・ジュニア・年齢別Cクラスまで幅広いカテゴリーで開催。",
+      "url": "https://idsf-japan.com/events",
+      "offers": {
+        "@type": "Offer",
+        "price": "3000",
+        "priceCurrency": "JPY",
+        "url": "https://forms.gle/DQgRaSPLJk346aCp7",
+        "availability": "https://schema.org/InStock",
+        "validThrough": "2026-08-30"
+      },
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "sport": "Dancesport"
     }
   ]
   </script>
@@ -755,6 +893,7 @@
     </div>
   </nav>
 
+
   <!-- Events Main -->
   <section class="section">
     <div class="container">
@@ -771,14 +910,6 @@
       <!-- シラバス・ルール案内 -->
       <div style="padding: var(--space-sm) var(--space-md); background: var(--color-bg-subtle); border-left: 3px solid var(--color-gold); border-radius: 4px; margin-bottom: var(--space-md); font-size: var(--fs-small); color: var(--color-text-light); line-height: 1.8;">
         各大会のカードをクリックすると、<strong style="color: var(--color-gold-dark);">シラバス（競技クラス別フィガー一覧）</strong>と大会要項を確認できます。共通の競技ルール・年齢カテゴリー・クラス区分は <a href="rules.html" style="color: var(--color-gold-dark); font-weight: 600;">Rulesページ</a>、シラバス詳細は <a href="rules.html#syllabus" style="color: var(--color-gold-dark); font-weight: 600;">シラバス</a> をご参照ください。
-      </div>
-
-      <!-- 結果アーカイブへの案内 -->
-      <div style="padding: var(--space-sm) var(--space-md); background: linear-gradient(135deg, #faf6ec 0%, #f4ecd6 100%); border: 1px solid #e4d3a8; border-radius: 4px; margin-bottom: var(--space-md); font-size: var(--fs-small); line-height: 1.8; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-        <span style="color: var(--color-text-strong);">
-          <strong style="color: var(--color-gold-dark);">📋 大会結果アーカイブ</strong>　Star Cup 新宿 2026/5/10 の成績結果を掲載しました。
-        </span>
-        <a href="results.html" style="color: var(--color-gold-dark); font-weight: 700; text-decoration: none; white-space: nowrap;">結果を見る →</a>
       </div>
 
       <!-- 国内大会 -->
@@ -809,7 +940,7 @@
     <div class="container text-center" data-reveal>
       <h2>大会参加について</h2>
       <p style="max-width:600px;margin:var(--space-sm) auto var(--space-md);color:var(--color-text-on-dark-muted);">
-        各大会への参加には IDSF Japan への会員登録が必要です（入会無料）。国内大会のエントリーや海外大会への出場サポートについては、お気軽にお問い合わせください。
+        各大会への参加に会員登録は不要です。どなたでもエントリーいただけます。国内大会のエントリーや海外大会への出場サポートについては、お気軽にお問い合わせください。
       </p>
       <a href="contact.html" class="btn btn--outline-white">エントリーについて問い合わせる</a>
     </div>
