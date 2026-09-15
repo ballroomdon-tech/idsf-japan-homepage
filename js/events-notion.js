@@ -78,6 +78,134 @@
     return events;
   }
 
+  /* ========== 9/22 第6回 STAR CUP 大会資料・タイムテーブル ==========
+     PDFと同じ内容をHTML表としてポップアップ内に表示し、PDFも大会資料に付与する。 */
+  const STARCUP_2026_09_22_DOCS = [
+    { label: 'タイムテーブル', type: '大会資料', url: '/events/starcup-2026-09-22-timetable.pdf' },
+    { label: 'エントリー一覧', type: '大会資料', url: '/events/starcup-2026-09-22-entry.pdf' },
+  ];
+
+  const STARCUP_2026_09_22_TIMETABLE = [
+    { time: '12:00', no: '1',  name: 'アダルトオープン ラテン',            round: '準決勝', dances: 'SCRPJ',  groups: '9',  note: '6組up・1ヒート' },
+    { time: '12:10', no: '2',  name: '7/9 C スタンダード',                round: '決勝',   dances: 'WVQ',    groups: '3',  note: '順位法' },
+    { time: '12:15', no: '3',  name: '10/11 C スタンダード',              round: '決勝',   dances: 'WVQ',    groups: '2',  note: '順位法' },
+    { time: '12:20', no: '4',  name: 'アダルトD ラテン チャチャチャ',   round: '決勝',   dances: 'C',      groups: '4',  note: '順位法' },
+    { time: '12:22', no: '5',  name: 'アダルトD ラテン ルンバ',         round: '決勝',   dances: 'R',      groups: '4',  note: '順位法' },
+    { time: '12:24', no: '6',  name: 'シニア1オープン ラテン',           round: '決勝',   dances: 'SCRPJ',  groups: '3',  note: '順位法・同時開始' },
+    { time: '12:24', no: '7',  name: 'シニア2オープン ラテン',           round: '決勝',   dances: 'SCRPJ',  groups: '2',  note: '順位法・同時開始' },
+    { time: '12:24', no: '8',  name: 'シニア3オープン ラテン',           round: '決勝',   dances: 'SCRPJ',  groups: '2',  note: '順位法・同時開始' },
+    { time: '12:24', no: '9',  name: 'シニア4オープン ラテン',           round: '決勝',   dances: 'SCRPJ',  groups: '1',  note: '順位法・同時開始' },
+    { time: '12:33', no: '10', name: 'U-16オープン スタンダード',        round: '決勝',   dances: 'WTVFQ',  groups: '5',  note: '順位法' },
+    { time: '12:42', no: '11', name: '3/6 C スタンダード',                round: '決勝',   dances: 'WVQ',    groups: '2',  note: '順位法' },
+    { time: '12:47', no: '12', name: 'アダルトC ラテン',                round: '決勝',   dances: 'SCR',    groups: '4',  note: '順位法' },
+    { time: '12:52', no: '13', name: 'ジュブナイルオープン スタンダード', round: '決勝', dances: 'WTVQ', groups: '8', note: '順位法' },
+    { time: '13:01', no: '14', name: 'アダルトオープン ラテン',            round: '決勝',   dances: 'SCRPJ',  groups: '6',  note: '順位法' },
+    { time: '13:11', type: 'break', name: '表彰式' },
+    { time: '13:41', type: 'break', name: '休憩' },
+    { time: '14:15', type: 'break', name: 'エキシビション' },
+    { time: '14:20', no: '15', name: 'アダルトオープン スタンダード',      round: '準決勝', dances: 'WTVFQ', groups: '10', note: '6組up・2ヒート' },
+    { time: '14:38', no: '16', name: '7/9 C ラテン',                      round: '決勝',   dances: 'SCJ',    groups: '3',  note: '順位法' },
+    { time: '14:43', no: '17', name: '10/11 C ラテン',                    round: '決勝',   dances: 'SCJ',    groups: '3',  note: '順位法' },
+    { time: '14:48', no: '18', name: 'シニア1オープン スタンダード',     round: '決勝',   dances: 'WTVFQ',  groups: '4',  note: '順位法・同時開始' },
+    { time: '14:48', no: '19', name: 'シニア2オープン スタンダード',     round: '決勝',   dances: 'WTVFQ',  groups: '2',  note: '順位法・同時開始' },
+    { time: '14:57', no: '20', name: 'アダルトD スタンダード ワルツ',  round: '決勝',   dances: 'W',      groups: '4',  note: '順位法' },
+    { time: '14:59', no: '21', name: 'アダルトD スタンダード タンゴ',  round: '決勝',   dances: 'T',      groups: '4',  note: '順位法' },
+    { time: '15:01', no: '24', name: '3/6 C ラテン',                      round: '決勝',   dances: 'SCJ',    groups: '2',  note: '順位法' },
+    { time: '15:06', no: '22', name: 'シニア3オープン スタンダード',     round: '決勝',   dances: 'WTVFQ',  groups: '2',  note: '順位法・同時開始' },
+    { time: '15:06', no: '23', name: 'シニア4オープン スタンダード',     round: '決勝',   dances: 'WTVFQ',  groups: '2',  note: '順位法・同時開始' },
+    { time: '15:15', no: '25', name: 'アダルトA1 スタンダード',          round: '決勝',   dances: 'WTVFQ',  groups: '3',  note: '順位法' },
+    { time: '15:24', no: '26', name: 'U-16オープン ラテン',                round: '決勝',   dances: 'SCRPJ',  groups: '5',  note: '順位法' },
+    { time: '15:33', no: '27', name: 'アダルトC スタンダード',          round: '決勝',   dances: 'WTQ',    groups: '3',  note: '順位法' },
+    { time: '15:38', no: '28', name: 'ジュブナイルオープン ラテン',     round: '決勝',   dances: 'SCRJ',   groups: '6',  note: '順位法' },
+    { time: '15:47', no: '29', name: 'アダルトオープン スタンダード',      round: '決勝',   dances: 'WTVFQ',  groups: '6',  note: '順位法' },
+    { time: '15:57', type: 'break', name: '表彰式' },
+    { time: '16:25', type: 'break', name: '終了' },
+  ];
+
+  /* 9/22 第6回 STAR CUP エントリー一覧（主催者提出のエントリー表に基づく） */
+  const STARCUP_2026_09_22_ENTRY = [
+    { name: 'アダルトオープン ラテン', pairs: [
+      ['井波龍一','安井奈々恵'],['柿澤夏月','小堤帆夏'],['河原正浩','河原孝子'],['杉山大悟','須田美咲'],
+      ['トコールアルトゥン','土屋恵梨'],['西村拓一','渡辺由紀子'],['福馬智生','泉名咲璃'],['山下幸一','照井千恵子'] ] },
+    { name: 'アダルトオープン スタンダード', pairs: [
+      ['井波龍一','安井奈々恵'],['柿澤夏月','小堤帆夏'],['河原正浩','河原孝子'],['佐藤陵汰','古屋結楓'],['杉山大悟','須田美咲'],
+      ['田畑芽吹','若島倫子'],['トコールアルトゥン','土屋恵梨'],['西村拓一','渡辺由紀子'],['福馬智生','泉名咲璃'],['山下幸一','照井千恵子'] ] },
+    { name: 'シニア1オープン ラテン', pairs: [
+      ['井波龍一','安井奈々恵'],['河原正浩','河原孝子'],['西村拓一','渡辺由紀子'] ] },
+    { name: 'シニア1オープン スタンダード', pairs: [
+      ['井波龍一','安井奈々恵'],['河原正浩','河原孝子'],['田畑芽吹','若島倫子'],['西村拓一','渡辺由紀子'] ] },
+    { name: 'シニア2オープン ラテン', pairs: [
+      ['河原正浩','河原孝子'],['西村拓一','渡辺由紀子'] ] },
+    { name: 'シニア2オープン スタンダード', pairs: [
+      ['河原正浩','河原孝子'],['西村拓一','渡辺由紀子'] ] },
+    { name: 'シニア3オープン ラテン', pairs: [
+      ['西村拓一','渡辺由紀子'],['山下幸一','照井千恵子'] ] },
+    { name: 'シニア3オープン スタンダード', pairs: [
+      ['西村拓一','渡辺由紀子'],['山下幸一','照井千恵子'] ] },
+    { name: 'シニア4オープン ラテン', pairs: [
+      ['伊勢隆太','寺田清美'] ] },
+    { name: 'シニア4オープン スタンダード', pairs: [
+      ['伊勢隆太','寺田清美'],['木嶋牧太郎','木嶋恵理子'] ] },
+    { name: 'U-16オープン ラテン', pairs: [
+      ['佐藤凌久','白取佑深'],['高井隆之介','武井那優'],['長谷川湊澄','尾原有里彩'],['長谷川葵澄','チェアヒ'],['長谷川楓澄','山本彩七'] ] },
+    { name: 'U-16オープン スタンダード', pairs: [
+      ['佐藤凌久','白取佑深'],['高井隆之介','武井那優'],['長谷川湊澄','尾原有里彩'],['長谷川葵澄','チェアヒ'],['長谷川楓澄','山本彩七'] ] },
+    { name: 'ジュブナイルオープン ラテン', pairs: [
+      ['河原隆之介','喜古彩'],['齋藤蒼叡','佐藤里咲'],['佐藤凌久','白取佑深'],['高井隆之介','武井那優'],
+      ['長谷川湊澄','尾原有里彩'],['長谷川葵澄','チェアヒ'],['長谷川楓澄','山本彩七'],['山﨑奏人','山﨑絃葉'] ] },
+    { name: 'ジュブナイルオープン スタンダード', pairs: [
+      ['齋藤蒼叡','佐藤里咲'],['佐藤凌久','白取佑深'],['高井隆之介','武井那優'],['長谷川湊澄','尾原有里彩'],
+      ['長谷川葵澄','チェアヒ'],['長谷川楓澄','山本彩七'],['山﨑奏人','山﨑絃葉'] ] },
+    { name: 'アダルトA1 スタンダード', pairs: [
+      ['佐藤陵汰','古屋結楓'],['田畑芽吹','若島倫子'],['福馬智生','泉名咲璃'] ] },
+    { name: 'アダルトC ラテン', pairs: [
+      ['伊勢隆太','寺田清美'],['今井真章','三浦香澄'],['岡室考紀','根本実結'],['木嶋牧太郎','木嶋恵理子'] ] },
+    { name: 'アダルトC スタンダード', pairs: [
+      ['伊勢隆太','寺田清美'],['今井真章','三浦香澄'],['岡室考紀','根本実結'] ] },
+    { name: 'アダルトD ラテン（チャチャチャ・ルンバ）', pairs: [
+      ['岡室考紀','根本実結'],['佐藤陵汰','古屋結楓'],['長谷川達三','鈴木令子'],['Rao Santosh','小堤明子'] ] },
+    { name: 'アダルトD スタンダード（ワルツ・タンゴ）', pairs: [
+      ['岡室考紀','根本実結'],['長谷川達三','鈴木令子'],['Rao Santosh','小堤明子'] ] },
+    { name: '3/6 C ラテン', pairs: [
+      ['齋藤蒼叡','佐藤里咲'],['山﨑奏人','山﨑絃葉'] ] },
+    { name: '3/6 C スタンダード', pairs: [
+      ['齋藤蒼叡','佐藤里咲'],['山﨑奏人','山﨑絃葉'] ] },
+    { name: '7/9 C ラテン', pairs: [
+      ['佐藤凌久','白取佑深'],['長谷川湊澄','尾原有里彩'],['長谷川楓澄','山本彩七'] ] },
+    { name: '7/9 C スタンダード', pairs: [
+      ['佐藤凌久','白取佑深'],['長谷川湊澄','尾原有里彩'],['長谷川楓澄','山本彩七'] ] },
+    { name: '10/11 C ラテン', pairs: [
+      ['河原隆之介','喜古彩'],['高井隆之介','武井那優'],['長谷川葵澄','チェアヒ'] ] },
+    { name: '10/11 C スタンダード', pairs: [
+      ['高井隆之介','武井那優'],['長谷川葵澄','チェアヒ'] ] },
+    { name: 'アダルトMaster ラテン（エキシビション）', pairs: [
+      ['野原惟央','清野爽'] ] },
+    { name: 'アダルトMaster スタンダード（エキシビション）', pairs: [
+      ['野原惟央','清野爽'] ] },
+  ];
+
+  /* ダンス略記→日本語名（title属性用） */
+  const DANCE_ABBR = {
+    W: 'ワルツ', T: 'タンゴ', V: 'ベニィーズワルツ', F: 'スローフォックストロット', Q: 'クイックステップ',
+    S: 'サンバ', C: 'チャチャチャ', R: 'ルンバ', P: 'パソドブレ', J: 'ジャイブ',
+  };
+  function dancesTitle(code) {
+    return String(code || '').split('').map(ch => DANCE_ABBR[ch] || ch).join('・');
+  }
+
+  function withStarCupDocs(events) {
+    (events || []).forEach(ev => {
+      if (!ev || (ev.dateStart || '').slice(0, 10) !== '2026-09-22') return;
+      ev.documents = (ev.documents || []).slice();
+      STARCUP_2026_09_22_DOCS.forEach(doc => {
+        if (!ev.documents.some(d => d && d.url === doc.url)) ev.documents.push(doc);
+      });
+      ev.timetable = STARCUP_2026_09_22_TIMETABLE;
+      ev.entryList = STARCUP_2026_09_22_ENTRY;
+    });
+    return events;
+  }
+
   /* ========== ユーティリティ ========== */
 
   function esc(s) {
@@ -457,6 +585,72 @@
          </div>`
       : '';
 
+    // タイムテーブル
+    const ttRows = (ev.timetable || []);
+    const timetableHTML = ttRows.length
+      ? `<div class="ev-modal__tt-wrap" role="region" aria-label="タイムテーブル">
+           <div class="ev-modal__docs-title">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+               <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>
+             </svg>
+             タイムテーブル
+           </div>
+           <p class="ev-modal__tt-note">※ 進行状況により時刻が前後する場合があります。余裕をもってご来場ください。</p>
+           <div class="ev-modal__tt-scroll">
+             <table class="ev-modal__tt">
+               <thead>
+                 <tr>
+                   <th scope="col">時刻</th>
+                   <th scope="col">No.</th>
+                   <th scope="col">種目</th>
+                   <th scope="col">ラウンド</th>
+                   <th scope="col">ダンス</th>
+                   <th scope="col">組数</th>
+                   <th scope="col">備考</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 ${ttRows.map(r => r.type === 'break'
+                   ? `<tr class="is-break"><td class="tt-time">${esc(r.time)}</td><td colspan="6">${esc(r.name)}</td></tr>`
+                   : `<tr>
+                        <td class="tt-time">${esc(r.time)}</td>
+                        <td class="tt-no">${esc(r.no)}</td>
+                        <td class="tt-name">${esc(r.name)}</td>
+                        <td>${esc(r.round)}</td>
+                        <td class="tt-dance" title="${esc(dancesTitle(r.dances))}">${esc(r.dances)}</td>
+                        <td class="tt-groups">${esc(r.groups)}</td>
+                        <td class="tt-note">${esc(r.note || '')}</td>
+                      </tr>`).join('')}
+               </tbody>
+             </table>
+           </div>
+           <p class="ev-modal__tt-legend">W=ワルツ、T=タンゴ、V=ベニィーズワルツ、F=スローフォックストロット、Q=クイックステップ／S=サンバ、C=チャチャチャ、R=ルンバ、P=パソドブレ、J=ジライブ</p>
+         </div>`
+      : '';
+
+    // エントリー一覧
+    const entrySections = (ev.entryList || []);
+    const entryListHTML = entrySections.length
+      ? `<div class="ev-modal__entry-wrap" role="region" aria-label="エントリー一覧">
+           <div class="ev-modal__docs-title">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+             </svg>
+             エントリー一覧
+           </div>
+           <p class="ev-modal__tt-note">※ 大会当日までに変更となる場合があります。最新版はPDFをご確認ください。</p>
+           <div class="ev-modal__entry-grid">
+             ${entrySections.map(sec => `
+               <section class="ev-modal__entry-sec">
+                 <h4 class="ev-modal__entry-head">${esc(sec.name)}<span class="ev-modal__entry-count">${sec.pairs.length}組</span></h4>
+                 <ol class="ev-modal__entry-pairs">
+                   ${sec.pairs.map(pr => `<li><span>${esc(pr[0])}</span><em>／</em><span>${esc(pr[1])}</span></li>`).join('')}
+                 </ol>
+               </section>`).join('')}
+           </div>
+         </div>`
+      : '';
+
     // ボタン
     const entryBtn = ev.entryUrl
       ? `<a href="${esc(ev.entryUrl)}" class="ev-modal__entry-btn" target="_blank" rel="noopener noreferrer">
@@ -489,6 +683,8 @@
           </tbody>
         </table>
         ${ev.description ? `<p class="ev-modal__desc">${esc(ev.description)}</p>` : ''}
+        ${timetableHTML}
+        ${entryListHTML}
         ${docsHTML}
         <div class="ev-modal__actions">
           ${entryBtn}
@@ -584,6 +780,7 @@
       const events = await res.json();
       if (!Array.isArray(events)) throw new Error('unexpected format');
       withChampionshipDocs(events);
+      withStarCupDocs(events);
 
       const domestic = events.filter(e => DOMESTIC_CATEGORIES.includes(e.category));
       const intl     = events.filter(e => INTL_CATEGORIES.includes(e.category));
@@ -600,6 +797,7 @@
     } catch (err) {
       console.warn('API failed, using fallback:', err.message);
       withChampionshipDocs(FALLBACK);
+      withStarCupDocs(FALLBACK);
       const domestic = FALLBACK.filter(e => DOMESTIC_CATEGORIES.includes(e.category));
       const intl     = FALLBACK.filter(e => INTL_CATEGORIES.includes(e.category));
       renderGrid('events-domestic',      'loading-domestic',      domestic, '現在登録されている国内大会はありません。');

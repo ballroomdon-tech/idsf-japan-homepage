@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026年 社交ダンス・ダンススポーツ大会スケジュール | STAR CUP・全日本選手権・Italian Open | IDSF Japan</title>
+  <title>2026年 社交ダンス・ダンススポーツ大会スケジュール | STAR CUP・全日本選手権・Italian Open | IDSF-japan</title>
   <meta name="description" content="2026年の社交ダンス・ダンススポーツ大会情報。第6回 STAR CUP 新宿（9/22）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など、IDSF Japan 主催・サポートの国内・国際大会スケジュールを随時更新。シラバス・要項も確認可能。">
   <meta name="keywords" content="社交ダンス 大会,ダンススポーツ 大会,Star Cup 新宿,全日本ダンススポーツ選手権,Italian Open 2026,IDSF Japan,競技ダンス 大会 2026,東京 社交ダンス 大会">
-  <meta property="og:title" content="大会・イベント情報 | IDSF Japan — Star Cup・全日本選手権・国際大会">
+  <meta property="og:title" content="大会・イベント情報 | IDSF-japan — Star Cup・全日本選手権・国際大会">
   <meta property="og:description" content="第6回 STAR CUP 新宿（9/22）・全日本ダンススポーツ選手権（6/7）・Italian Open 2026など2026年大会スケジュール。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idsf-japan.com/events">
@@ -14,9 +14,9 @@
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="738">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:site_name" content="IDSF Japan">
+  <meta property="og:site_name" content="IDSF-japan｜一般社団法人 International Dancesport Japan">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="大会・イベント情報 | IDSF Japan">
+  <meta name="twitter:title" content="大会・イベント情報 | IDSF-japan">
   <meta name="twitter:description" content="第6回 STAR CUP 新宿（9/22）・全日本選手権・Italian Open 2026など2026年大会スケジュール。">
   <meta name="twitter:image" content="https://idsf-japan.com/images/og-image.jpg">
   <link rel="canonical" href="https://idsf-japan.com/events">
@@ -601,6 +601,159 @@
       margin-bottom: 1.5rem;
     }
 
+    /* タイムテーブル */
+    .ev-modal__tt-wrap {
+      margin: 1.25rem 0 1.5rem;
+      padding: 1rem 1.25rem 1.1rem;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius);
+    }
+    .ev-modal__tt-note {
+      font-size: 0.75rem;
+      color: var(--color-text-light);
+      line-height: 1.7;
+      margin: 0 0 0.7rem;
+    }
+    .ev-modal__tt-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--color-border-light);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .ev-modal__tt {
+      width: 100%;
+      min-width: 500px;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .ev-modal__tt thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: var(--color-navy);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-align: left;
+      white-space: nowrap;
+      padding: 0.5rem 0.5rem;
+    }
+    .ev-modal__tt tbody td {
+      padding: 0.5rem 0.5rem;
+      border-top: 1px solid var(--color-border-light);
+      vertical-align: top;
+      color: var(--color-text);
+    }
+    .ev-modal__tt tbody tr:nth-child(even) td { background: rgba(0, 0, 0, 0.015); }
+    .ev-modal__tt .tt-time {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--color-gold-dark);
+    }
+    .ev-modal__tt .tt-no,
+    .ev-modal__tt .tt-groups {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-text-light);
+    }
+    .ev-modal__tt .tt-name { font-weight: 600; color: var(--color-text-strong); }
+    .ev-modal__tt .tt-dance {
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .ev-modal__tt .tt-note {
+      font-size: 0.72rem;
+      color: var(--color-text-light);
+      line-height: 1.5;
+    }
+    .ev-modal__tt tr.is-break td {
+      background: var(--color-bg-subtle);
+      font-weight: 700;
+      color: var(--color-text-strong);
+      letter-spacing: 0.06em;
+    }
+    .ev-modal__tt-legend {
+      font-size: 0.7rem;
+      color: var(--color-text-light);
+      line-height: 1.8;
+      margin: 0.7rem 0 0;
+    }
+    @media (max-width: 600px) {
+      .ev-modal__tt-wrap { padding: 0.9rem 0.9rem 1rem; }
+      .ev-modal__tt { font-size: 0.75rem; }
+    }
+
+    /* エントリー一覧 */
+    .ev-modal__entry-wrap {
+      margin: 1.25rem 0 1.5rem;
+      padding: 1rem 1.25rem 1.1rem;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--border-radius);
+    }
+    .ev-modal__entry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem 1.1rem;
+    }
+    .ev-modal__entry-sec {
+      background: #fff;
+      border: 1px solid var(--color-border-light);
+      border-radius: 4px;
+      padding: 0.6rem 0.75rem 0.7rem;
+    }
+    .ev-modal__entry-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin: 0 0 0.45rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--color-text-strong);
+    }
+    .ev-modal__entry-count {
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--color-gold-dark);
+      font-variant-numeric: tabular-nums;
+    }
+    .ev-modal__entry-pairs {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: entrypair;
+    }
+    .ev-modal__entry-pairs li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.15rem;
+      padding: 0.18rem 0;
+      font-size: 0.76rem;
+      line-height: 1.6;
+      color: var(--color-text);
+    }
+    .ev-modal__entry-pairs li + li { border-top: 1px dotted var(--color-border-light); }
+    .ev-modal__entry-pairs em {
+      font-style: normal;
+      color: var(--color-text-light);
+    }
+    @media (max-width: 600px) {
+      .ev-modal__entry-wrap { padding: 0.9rem 0.9rem 1rem; }
+      .ev-modal__entry-grid { grid-template-columns: 1fr; }
+    }
+
     /* 資料（シラバス・要項）セクション */
     .ev-modal__docs {
       margin: 1.25rem 0 1.5rem;
@@ -773,7 +926,7 @@
       },
       "organizer": {
         "@type": "Organization",
-        "name": "IDSF Japan",
+        "name": "IDSF-japan",
         "url": "https://idsf-japan.com"
       },
       "description": "IDSF公認の国内コンペティション。スタンダード・ラテン各種目を実施。",
@@ -800,7 +953,7 @@
       },
       "organizer": {
         "@type": "Organization",
-        "name": "IDSF Japan",
+        "name": "IDSF-japan",
         "url": "https://idsf-japan.com"
       },
       "description": "IDSF Japan 主催の全日本選手権大会。日本一を決める最高峰の舞台。",
@@ -828,7 +981,7 @@
       },
       "organizer": {
         "@type": "Organization",
-        "name": "IDSF Japan",
+        "name": "IDSF-japan",
         "url": "https://idsf-japan.com"
       },
       "description": "IDSF DANCESPORT OPEN COMPETITION IN TOKYO。スタンダード・ラテン各種目、アダルトからシニア・ジュニア・年齢別Cクラスまで幅広いカテゴリーで開催。",
@@ -853,12 +1006,13 @@
   <!-- Header -->
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+      <a href="/" class="site-logo">IDSF-<span>japan</span></a>
       <nav class="main-nav" role="navigation" aria-label="メインナビゲーション">
         <a href="/">ホーム</a>
         <a href="about.html">団体について</a>
         <a href="events.html" class="active">競技会</a>
         <a href="results.html">大会結果</a>
+        <a href="news.html">お知らせ</a>
         <a href="rules.html">競技規則</a>
         <a href="contact.html">お問い合わせ</a>
       </nav>
@@ -872,6 +1026,7 @@
     <a href="about.html">団体について</a>
     <a href="events.html">競技会</a>
     <a href="results.html">大会結果</a>
+    <a href="news.html">お知らせ</a>
     <a href="rules.html">競技規則</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
@@ -951,7 +1106,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="site-logo">IDSF <span>Japan</span></a>
+          <a href="/" class="site-logo">IDSF-<span>japan</span></a>
           <p>国際ダンススポーツ財団（IDSF）本部直轄 日本支部（International Dancesport Japan）。社交ダンス・ダンススポーツの普及と国際交流を推進します。</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/idsfproduct_japan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -971,6 +1126,7 @@
           <a href="about.html">団体について</a>
           <a href="events.html">競技会</a>
           <a href="results.html">大会結果</a>
+          <a href="news.html">お知らせ</a>
           <a href="rules.html">競技規則</a>
           <a href="contact.html">お問い合わせ</a>
         </div>
@@ -992,7 +1148,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 IDSF Japan. All rights reserved.</p>
+        <p>&copy; 2026 IDSF-japan｜一般社団法人 International Dancesport Japan. All rights reserved.</p>
         <p>IDSF本部直轄 日本支部</p>
       </div>
     </div>
