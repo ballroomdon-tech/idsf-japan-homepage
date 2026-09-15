@@ -588,13 +588,15 @@
     // タイムテーブル
     const ttRows = (ev.timetable || []);
     const timetableHTML = ttRows.length
-      ? `<div class="ev-modal__tt-wrap" role="region" aria-label="タイムテーブル">
-           <div class="ev-modal__docs-title">
+      ? `<details class="ev-modal__fold ev-modal__tt-wrap">
+           <summary class="ev-modal__fold-head">
              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>
              </svg>
-             タイムテーブル
-           </div>
+             <span class="ev-modal__fold-label">タイムテーブル</span>
+             <span class="ev-modal__fold-count">全${ttRows.filter(r => r.type !== 'break').length}種目</span>
+             <svg class="ev-modal__fold-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+           </summary>
            <p class="ev-modal__tt-note">※ 進行状況により時刻が前後する場合があります。余裕をもってご来場ください。</p>
            <div class="ev-modal__tt-scroll">
              <table class="ev-modal__tt">
@@ -624,20 +626,22 @@
                </tbody>
              </table>
            </div>
-           <p class="ev-modal__tt-legend">W=ワルツ、T=タンゴ、V=ベニィーズワルツ、F=スローフォックストロット、Q=クイックステップ／S=サンバ、C=チャチャチャ、R=ルンバ、P=パソドブレ、J=ジライブ</p>
-         </div>`
+           <p class="ev-modal__tt-legend">W=ワルツ、T=タンゴ、V=ベニィーズワルツ、F=スローフォックストロット、Q=クイックステップ／S=サンバ、C=チャチャチャ、R=ルンバ、P=パソドブレ、J=ジャイブ</p>
+         </details>`
       : '';
 
     // エントリー一覧
     const entrySections = (ev.entryList || []);
     const entryListHTML = entrySections.length
-      ? `<div class="ev-modal__entry-wrap" role="region" aria-label="エントリー一覧">
-           <div class="ev-modal__docs-title">
+      ? `<details class="ev-modal__fold ev-modal__entry-wrap">
+           <summary class="ev-modal__fold-head">
              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
              </svg>
-             エントリー一覧
-           </div>
+             <span class="ev-modal__fold-label">エントリー一覧</span>
+             <span class="ev-modal__fold-count">${entrySections.length}部門・${entrySections.reduce((a, sec) => a + sec.pairs.length, 0)}組</span>
+             <svg class="ev-modal__fold-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+           </summary>
            <p class="ev-modal__tt-note">※ 大会当日までに変更となる場合があります。最新版はPDFをご確認ください。</p>
            <div class="ev-modal__entry-grid">
              ${entrySections.map(sec => `
@@ -648,7 +652,7 @@
                  </ol>
                </section>`).join('')}
            </div>
-         </div>`
+         </details>`
       : '';
 
     // ボタン

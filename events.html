@@ -601,6 +601,61 @@
       margin-bottom: 1.5rem;
     }
 
+    /* 折りたたみ（タイムテーブル・エントリー一覧 共通） */
+    .ev-modal__fold { overflow: hidden; }
+    .ev-modal__fold > summary {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      list-style: none;
+      margin: -1rem -1.25rem;
+      padding: 0.85rem 1.25rem;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--color-text-strong);
+      text-transform: uppercase;
+      transition: background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .ev-modal__fold > summary::-webkit-details-marker { display: none; }
+    .ev-modal__fold > summary:hover { background: rgba(183, 148, 80, 0.07); }
+    .ev-modal__fold > summary:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: -2px;
+    }
+    .ev-modal__fold > summary > svg:first-child {
+      color: var(--color-gold-dark);
+      flex-shrink: 0;
+    }
+    .ev-modal__fold-label { flex-shrink: 0; }
+    .ev-modal__fold-count {
+      flex: 1 1 auto;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--color-text-light);
+      font-variant-numeric: tabular-nums;
+    }
+    .ev-modal__fold-chev {
+      flex-shrink: 0;
+      color: var(--color-text-light);
+      transition: transform 0.2s ease;
+    }
+    .ev-modal__fold[open] > summary { margin-bottom: 0.35rem; }
+    .ev-modal__fold[open] .ev-modal__fold-chev { transform: rotate(180deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .ev-modal__fold-chev { transition: none; }
+    }
+    @media (max-width: 600px) {
+      .ev-modal__fold > summary {
+        margin: -0.9rem -0.9rem;
+        padding: 0.8rem 0.9rem;
+      }
+    }
+
     /* タイムテーブル */
     .ev-modal__tt-wrap {
       margin: 1.25rem 0 1.5rem;
