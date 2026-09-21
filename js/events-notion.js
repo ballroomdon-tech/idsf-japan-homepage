@@ -278,7 +278,7 @@
     "name": "アダルトD スタンダード ワルツ",
     "round": "決勝",
     "dances": "W",
-    "groups": 4,
+    "groups": 3,
     "note": "順位法"
   },
   {
@@ -287,12 +287,12 @@
     "name": "アダルトD スタンダード タンゴ",
     "round": "決勝",
     "dances": "T",
-    "groups": 4,
+    "groups": 3,
     "note": "順位法"
   },
   {
     "time": "15:01",
-    "no": 24,
+    "no": 22,
     "name": "3/6 C ラテン",
     "round": "決勝",
     "dances": "SCJ",
@@ -301,16 +301,16 @@
   },
   {
     "time": "15:06",
-    "no": 22,
+    "no": 23,
     "name": "シニア3オープン スタンダード",
     "round": "決勝",
     "dances": "WTVFQ",
-    "groups": 2,
+    "groups": 3,
     "note": "順位法・同時開始"
   },
   {
     "time": "15:06",
-    "no": 23,
+    "no": 24,
     "name": "シニア4オープン スタンダード",
     "round": "決勝",
     "dances": "WTVFQ",
@@ -332,7 +332,7 @@
     "name": "U-16オープン ラテン",
     "round": "決勝",
     "dances": "SCRPJ",
-    "groups": 5,
+    "groups": 4,
     "note": "順位法"
   },
   {
