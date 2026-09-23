@@ -55,6 +55,9 @@ function transformEvent(page) {
   // ---- エントリー締切 ----
   const entryDeadline = p['エントリー締切']?.date?.start || null;
 
+  // ---- 開催時期（日付未定のときの表示用テキスト。例: 2027年1〜2月ごろ（予定））----
+  const datePlanned = extractText(p['開催時期']?.rich_text || []);
+
   // ---- カテゴリ (Select) ----
   // Notion値: 選手権大会 / オープン大会 / 国際大会 / 練習会・交流会
   const categoryRaw = p['カテゴリ']?.select?.name || '';
@@ -142,6 +145,7 @@ function transformEvent(page) {
     title,
     dateStart,
     dateEnd,
+    datePlanned,
     category,
     categoryRaw,
     division,

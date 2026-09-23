@@ -972,7 +972,7 @@
   /* ========== カードHTML ========== */
 
   function cardHTML(ev) {
-    const dateStr = fmtDate(ev.dateStart, ev.dateEnd);
+    const dateStr = fmtDate(ev.dateStart, ev.dateEnd) || ev.datePlanned || '';
     const past    = isPast(ev);
 
     // 終了バッジ（画像左上、カテゴリの下）
@@ -1208,7 +1208,7 @@
       : '';
 
     // 期間
-    const dateStr = fmtDate(ev.dateStart, ev.dateEnd);
+    const dateStr = fmtDate(ev.dateStart, ev.dateEnd) || ev.datePlanned || '';
 
     // 締切
     const deadlineHTML = ev.entryDeadline
